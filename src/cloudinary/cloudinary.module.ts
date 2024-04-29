@@ -9,8 +9,8 @@ import { MulterModule } from '@nestjs/platform-express';
   //     dest: './picture', // المسار الذي سيتم تخزين الملفات المرفوعة إليه
   //   }),
   // ],
-  controllers :[CloudinaryController],
-  providers: [CloudinaryProvider, CloudinaryService],
-  exports: [CloudinaryProvider, CloudinaryService],
+  // controllers :[CloudinaryController],
+  // providers: [CloudinaryProvider, CloudinaryService],
+  // exports: [CloudinaryProvider, CloudinaryService],
 })
 export class CloudinaryModule {}
