@@ -25,7 +25,7 @@ import { ProgramUmrahSpecialModule } from './program_umrah_special/program_umrah
 @Module({
   imports: [
 
-    MongooseModule.forRoot('mongodb+srv://NasmaAlAbed:GIKGHxRgWrd1J1uY@cluster0.nolvplt.mongodb.net/all-data?retryWrites=true&w=majority'),FileModule,  HotelModule, HotelRoomModule, ProgramBusModule, OfficeModule, EmployeeModule, AlHajjModule, AlMutamirModule, ProgramUmrahModule, ProgramAlHajModule, ProgUmrahAirlineModule,
+    MongooseModule.forRoot('mongodb+srv://NasmaAlAbed:GIKGHxRgWrd1J1uY@cluster0.nolvplt.mongodb.net/all-data?retryWrites=true&w=majority'),  HotelModule, HotelRoomModule, ProgramBusModule, OfficeModule, EmployeeModule, AlHajjModule, AlMutamirModule, ProgramUmrahModule, ProgramAlHajModule, ProgUmrahAirlineModule,
      ProgHajAirlineModule, ProgUmrahHotelModule, ProgAlHajHotelModule, CloudinaryModule, ProgramUmrahSpecialModule ],
 
 
