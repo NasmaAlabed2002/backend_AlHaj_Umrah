@@ -27,9 +27,9 @@ export class ProgramBusController {
   async createBusCompany(@Body() busCompanyDto: BusCompanyDto) {
     return this.programBusService.createBusCompany(busCompanyDto);
   }
-  @Get('buscompany')
+  @Get('buscompanys')
   async findAllBusCompanies() {
-    return await this.programBusService.findAllBusCompanies();
+    return this.programBusService.findAllBusCompanies();
   }
   @Get()
   @ApiOperation({ summary: 'Get all ProgramBus with ProgramUmrah name' })
