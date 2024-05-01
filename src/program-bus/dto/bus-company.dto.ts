@@ -38,7 +38,7 @@ export class BusCompanyDto {
 
  
   // @ApiProperty()
-  @IsArray()
+  // @IsArray()
   @ValidateNested({ each: true })
   @Type(() => SeatDto)
   seat: SeatDto[];
