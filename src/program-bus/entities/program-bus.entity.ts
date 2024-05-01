@@ -28,10 +28,10 @@ export class ProgramBus extends Document {
    
 
     seat: [{
-      number_bus: number;
-    seatNumber: Number,
-    name_passenger: String,
-    isReserved: boolean
+    number_bus: number;
+    seatNumber: Number;
+    name_passenger: String;
+    isReserved: boolean;
   }]
 }]
 

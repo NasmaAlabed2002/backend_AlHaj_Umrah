@@ -27,12 +27,14 @@ export class ProgramBusController {
   async createBusCompany(@Body() busCompanyDto: BusCompanyDto) {
     return this.programBusService.createBusCompany(busCompanyDto);
   }
-  @Get('buscompanys')
+  @Get('')
+  @ApiOperation({ summary: 'Get all ProgramBus with ProgramUmrah name' })
+  @ApiResponse({ status: 200, description: 'OK'})
   async findAllBusCompanies() {
     return this.programBusService.findAllBusCompanies();
   }
   @Get()
-  @ApiOperation({ summary: 'Get all ProgramBus with ProgramUmrah name' })
+  @ApiOperation({ summary: 'Get all BusCompany ' })
   @ApiResponse({ status: 200, description: 'OK'})
   async getProgramBusWithnameprogramUmrah() {
     return this.programBusService.findProgramBusWithnameprogramUmrah();
