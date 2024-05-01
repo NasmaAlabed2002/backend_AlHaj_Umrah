@@ -9,11 +9,11 @@ export class BusCompanyDto {
   name_company: string;
 
   @ApiProperty()
-  @IsArray()
+  // @IsArray()
   Services: Array<string>;
   
   @ApiProperty()
-  @IsArray()
+  // @IsArray()
   goals_company:Array<string>;
 
   @ApiProperty()
@@ -21,7 +21,7 @@ export class BusCompanyDto {
   urlImageCompany:URL;
 
   @ApiProperty()
-  @IsArray()
+  // @IsArray()
   urlImage:Array<string>
 
   @ApiProperty()
