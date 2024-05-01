@@ -23,9 +23,12 @@ export class ProgramBusController {
   findOne(@Param('id') id: string) {
     return this.programBusService.findOne(id);
   }
-
+  @Post('buscompany')
+  async createBusCompany(@Body() busCompanyDto: BusCompanyDto) {
+    return this.programBusService.createBusCompany(busCompanyDto);
+  }
   @Get('buscompany')
-  async findAllBusCompanies() {
+  async getAllBusCompanies() {
     return await this.programBusService.findAllBusCompanies();
   }
   @Get()
@@ -77,11 +80,4 @@ export class ProgramBusController {
   remove(@Param('id') id: string) {
     return this.programBusService.remove(id);
   }
-
-  @Post(':BusCompany')
-  async createBusCompany(@Body() busCompanyDto: BusCompanyDto) {
-    return this.programBusService.createbusCompany(busCompanyDto);
-  }
-
-
 }
