@@ -4,13 +4,13 @@ import { CreateProgramBusDto } from './dto/create-program-bus.dto';
 import { UpdateProgramBusDto } from './dto/update-program-bus.dto';
 import { BusCompanyDto } from './dto/bus-company.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-
+import { ProgramBus } from './entities/program-bus.entity';
 @Controller('program-bus')
 export class ProgramBusController {
   constructor(private readonly programBusService: ProgramBusService) {}
 
   @Post()
-  create(@Body() createProgramBusDto:CreateProgramBusDto) {
+  create(@Body() createProgramBusDto: CreateProgramBusDto) {
     return this.programBusService.create(createProgramBusDto);
   }
 
@@ -23,7 +23,11 @@ export class ProgramBusController {
   findOne(@Param('id') id: string) {
     return this.programBusService.findOne(id);
   }
-  
+
+  @Get('buscompany')
+  async findAllBusCompanies() {
+    return await this.programBusService.findAllBusCompanies();
+  }
   @Get()
   @ApiOperation({ summary: 'Get all ProgramBus with ProgramUmrah name' })
   @ApiResponse({ status: 200, description: 'OK'})
@@ -74,13 +78,10 @@ export class ProgramBusController {
     return this.programBusService.remove(id);
   }
 
-  @Post('BusCompany')
+  @Post(':BusCompany')
   async createBusCompany(@Body() busCompanyDto: BusCompanyDto) {
     return this.programBusService.createbusCompany(busCompanyDto);
   }
 
-  @Get('BusCompany')
-  async findAllBusCompanies() {
-    return this.programBusService.findAllBusCompanies();
-  }
+
 }
