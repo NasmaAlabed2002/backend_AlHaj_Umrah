@@ -19,8 +19,8 @@ export class ProgramBusService {
     const createdProgramBus = new this.ProgramBusModel(createProgramBusDto);
     return createdProgramBus.save();
   }
-  async createBusCompany(busCompanyDto: BusCompanyDto): Promise<busCompany> {
-    const createdBusCompany = new this.busCompanyModel(busCompanyDto);
+  async createBusCompany(  name_company: string,  Services, goals_company , urlImageCompany:URL , urlImage,link: URL, type_bus: string , price_tecket: string): Promise<busCompany> {
+    const createdBusCompany = new this.busCompanyModel({name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket});
     return createdBusCompany.save();
   }
 

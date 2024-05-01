@@ -1,9 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete , UseInterceptors, UploadedFile,} from '@nestjs/common';
 import { ProgramBusService } from './program-bus.service';
 import { CreateProgramBusDto } from './dto/create-program-bus.dto';
 import { UpdateProgramBusDto } from './dto/update-program-bus.dto';
 import { BusCompanyDto } from './dto/bus-company.dto';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiResponse, ApiBody, ApiConsumes,  ApiTags } from '@nestjs/swagger';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { ProgramBus } from './entities/program-bus.entity';
 @Controller('program-bus')
 export class ProgramBusController {
@@ -24,9 +25,33 @@ export class ProgramBusController {
     return this.programBusService.findOne(id);
   }
   @Post('buscompany')
-  async createBusCompany(@Body() busCompanyDto: BusCompanyDto) {
-    return this.programBusService.createBusCompany(busCompanyDto);
+  @UseInterceptors(FileInterceptor('buscompany'))
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+
+        name_company: { type: 'string' },
+        Services: {type: 'array', items: { type: 'string' }  },
+        goals_company: {type: 'array', items: { type: 'string' }  },
+        urlImageCompany: { type: 'URL' },
+        urlImage : {type: 'array', items: { type: 'string' } },
+        link: { type: 'URL' },
+        type_bus: { type: 'string' },
+        price_tecket: { type: 'string' },
+      },
+    },
+  })
+  @ApiResponse({ status: 201, description: 'successfully!' })
+  async createBusCompany(
+    @UploadedFile() 
+    @Body() busCompanyDto: BusCompanyDto,
+  ) {
+    const { name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket } = busCompanyDto;
+    return this.programBusService.createBusCompany(name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket);
   }
+ 
   @Get('')
   @ApiOperation({ summary: 'Get all ProgramBus with ProgramUmrah name' })
   @ApiResponse({ status: 200, description: 'OK'})
