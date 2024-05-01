@@ -3,10 +3,18 @@ import { ApiProperty } from "@nestjs/swagger";
 import { Type } from 'class-transformer';
 import { SeatDto } from './seat.dto';
 
-export class busCompanyDto {
+export class BusCompanyDto {
   @ApiProperty()
   @IsString()
   name_company: string;
+
+  @ApiProperty()
+  @IsArray()
+  Services: Array<string>;
+  
+  @ApiProperty()
+  @IsArray()
+  goals_company:Array<string>;
 
   @ApiProperty()
   @IsUrl()

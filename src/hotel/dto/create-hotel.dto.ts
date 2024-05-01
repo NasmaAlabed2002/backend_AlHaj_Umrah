@@ -16,7 +16,7 @@ export class CreateHotelDto {
     location : string;
 
     @ApiProperty()
-    @IsArray()
+    @IsString()
     details : string;
 
     @ApiProperty()
@@ -35,7 +35,7 @@ export class CreateHotelDto {
 
        
     @ApiProperty()
-    @IsString()
+    @IsArray()
     Places_available_visit:Array<string>;
 
     @ApiProperty()

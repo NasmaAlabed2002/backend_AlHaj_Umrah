@@ -9,6 +9,12 @@ export class busCompany extends Document {
   name_company: string;
 
   @Prop()
+  Services: Array<string>;
+  
+  @Prop()
+  goals_company:Array<string>;
+
+  @Prop()
   urlImageCompany:URL;
 
   @Prop()
@@ -23,8 +29,8 @@ export class busCompany extends Document {
   @Prop()
   price_tecket: string;
 
-  @Prop()
-  number_bus: number;
+  // @Prop()
+  // number_bus: number;
 
   // @Prop({ type: [{ type: SchemaTypes.ObjectId , ref: 'Seat' }] })
   // seat: Seat[];

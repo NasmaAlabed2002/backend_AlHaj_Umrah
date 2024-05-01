@@ -17,12 +17,18 @@ export class ProgramBus extends Document {
   @Prop({ type: [busCompanySchema] })
   busCompany: [{
     name_company: string;
+    Services: Array<string>;
+    goals_company:Array<string>;
+    urlImageCompany:URL;
+    urlImage:Array<string>
+    link: URL;
     type_bus: string;
     price_tecket: string;
    
-    number_bus: number;
+   
 
     seat: [{
+      number_bus: number;
     seatNumber: Number,
     name_passenger: String,
     isReserved: boolean

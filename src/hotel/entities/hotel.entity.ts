@@ -26,10 +26,8 @@ export class Hotel extends Document {
   @Prop()
   urlImage: Array<string>;
 
-
   @Prop()
   Services: Array<string>;
-
 
   @Prop()
   Places_available_visit:Array<string>;
