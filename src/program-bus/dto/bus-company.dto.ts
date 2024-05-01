@@ -37,7 +37,7 @@ export class BusCompanyDto {
   price_tecket: string;
 
  
-  @ApiProperty()
+  // @ApiProperty()
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => SeatDto)
