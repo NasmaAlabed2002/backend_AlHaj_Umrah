@@ -22,7 +22,10 @@ export class ProgramBusController {
   findOne(@Param('id') id: string) {
     return this.programBusService.findOne(id);
   }
-
+  @Get('buscompany')
+  async getAllBusCompanies() {
+    return await this.programBusService.getAllBusCompanies();
+  }
   @Get()
   @ApiOperation({ summary: 'Get all ProgramBus with ProgramUmrah name' })
   @ApiResponse({ status: 200, description: 'OK'})

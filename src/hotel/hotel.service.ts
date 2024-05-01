@@ -11,8 +11,8 @@ import { promisify } from 'util';
 @Injectable()
 export class HotelService {
   constructor(@InjectModel( Hotel.name) private  HotelModel: Model< Hotel>) {}
-  async create(name :string, Number_stars:string ,location: string ,details: string , urlImage , Services, Places_available_visit, link:string) : Promise<Hotel> {
-    const createdHotel= new this.HotelModel({name, Number_stars ,location, details , urlImage ,  Services, Places_available_visit, link});
+  async create(name :string, Number_stars:number ,location: string ,details: string , urlImagehotel:URL , urlImage , Services, Places_available_visit, link:URL) : Promise<Hotel> {
+    const createdHotel= new this.HotelModel({name, Number_stars ,location, details , urlImagehotel , urlImage ,  Services, Places_available_visit, link});
     return createdHotel.save();
   }
  

@@ -5,6 +5,10 @@ export type SeatDocument = Seat & Document;
 
 @Schema()
 export class Seat extends Document {
+  
+  @Prop()
+  number_bus: number;
+
   @Prop()
   seatNumber: number;
 

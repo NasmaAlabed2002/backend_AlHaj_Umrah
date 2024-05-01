@@ -25,13 +25,14 @@ export class HotelController {
       properties: {
 
         name: { type: 'string' },
-        Number_stars: { type: 'string' },
+        Number_stars: { type: 'number' },
         location: { type: 'string' },
         details: { type: 'string' },
+        urlImagehotel: { type: 'URL' },
         urlImage : {type: 'array', items: { type: 'string' } },
         Services: {type: 'array', items: { type: 'string' }  },
         Places_available_visit: {type: 'array', items: { type: 'string' }  },
-        link: { type: 'string' },
+        link: { type: 'URL' },
       },
     },
   })
@@ -40,8 +41,8 @@ export class HotelController {
     @UploadedFile() file: Express.Multer.File,
     @Body() createHotelDto: CreateHotelDto,
   ) {
-    const { name, Number_stars, location, details , urlImage, Services, Places_available_visit, link } = createHotelDto;
-    return this.hotelService.create(name, Number_stars, location, details, urlImage,  Services, Places_available_visit, link);
+    const { name, Number_stars, location, details, urlImagehotel, urlImage, Services, Places_available_visit, link } = createHotelDto;
+    return this.hotelService.create(name, Number_stars, location, details,urlImagehotel,  urlImage,  Services, Places_available_visit, link);
   }
 
   @Get(':id')
@@ -66,7 +67,8 @@ export class HotelController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateHotelDto: UpdateHotelDto) {
+  update(@Param('id') id: string, 
+  @Body() updateHotelDto: UpdateHotelDto) {
     return this.hotelService.update(id, updateHotelDto);
   }
 

@@ -12,13 +12,16 @@ export class Hotel extends Document {
   name: string;
 
   @Prop()
-  Number_stars: string;
+  Number_stars: number;
 
   @Prop()
   location: string;
 
   @Prop()
   details: string;
+
+  @Prop()
+  urlImagehotel:URL;
 
   @Prop()
   urlImage: Array<string>;
@@ -33,7 +36,7 @@ export class Hotel extends Document {
 
 
   @Prop()
-  link: string;
+  link:URL;
 }
 
 export const Hotelchema = SchemaFactory.createForClass(Hotel);

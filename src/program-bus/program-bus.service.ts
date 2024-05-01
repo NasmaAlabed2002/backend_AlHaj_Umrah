@@ -20,6 +20,10 @@ export class ProgramBusService {
   async findProgramBusWithnameprogramUmrah(): Promise<ProgramBus[]>{
     return await this.ProgramBusModel.find().populate('id_ProgramUmrah','name_program').exec();
   }
+  async getAllBusCompanies() {
+    return await this.ProgramBusModel.find({}, { buscompany: 1 });
+  }
+
   async findById(id: string): Promise<ProgramBus> {
     return await this.ProgramBusModel.findById(id).exec();
   }
@@ -44,9 +48,9 @@ export class ProgramBusService {
 
   async reserveSeat(id: string, name_company: string, number_bus: number, seatNumber: number , name_passenger: string): Promise<void> {
     await this.ProgramBusModel.updateMany(
-      { id, 'busCompany.name_company': name_company, 'busCompany.number_bus': number_bus, 'busCompany.seat.seatNumber': seatNumber},
+      { id, 'busCompany.name_company': name_company, 'busCompany.seat.number_bus': number_bus, 'busCompany.seat.seatNumber': seatNumber},
       { $set: { 'busCompany.$[busCompany].seat.$[seat].isReserved': true ,  'busCompany.$[busCompany].seat.$[seat].name_passenger': name_passenger } },
-      { arrayFilters: [{ 'busCompany.name_company': name_company, 'busCompany.number_bus': number_bus }, { 'seat.seatNumber': seatNumber}] }
+      { arrayFilters: [{ 'busCompany.name_company': name_company  }, { 'seat.number_bus': number_bus , 'seat.seatNumber': seatNumber}] }
     );
   }
   async getUmrahProgramName(programBusId: string): Promise<string> {
@@ -67,10 +71,11 @@ export class ProgramBusService {
       .findOne({ id_ProgramUmrah })
       .populate({
         path: 'busCompany',
-        match: { name_company, number_bus },
+        match: { name_company},
         select: '_id',
         populate: {
           path: 'seat',
+          match: { number_bus },
           select: 'name_passenger',
         },
       })
@@ -88,11 +93,11 @@ async getAvailableSeatsByProgramCompanyAndBus( id_ProgramUmrah: string, name_com
     .findOne({ id_ProgramUmrah })
     .populate({
       path: 'busCompany',
-      match: { name_company, number_bus },
+      match: { name_company },
       select: '_id',
       populate: {
         path: 'seat',
-        match: { isReserved: false },
+        match: { number_bus , isReserved: false },
         select: 'seatNumber',
       },
     })
@@ -110,9 +115,9 @@ async getAvailableSeatsByProgramCompanyAndBus( id_ProgramUmrah: string, name_com
 
 async cancelReservationByPassengerName(id: string, name_company: string, number_bus: number,  name_passenger: string): Promise<void> {
 await this.ProgramBusModel.updateMany(
-  { id, 'busCompany.name_company': name_company, 'busCompany.number_bus': number_bus , 'busCompany.seat.name_passenger': name_passenger},
+  { id, 'busCompany.name_company': name_company, 'busCompany.seat.number_bus': number_bus , 'busCompany.seat.name_passenger': name_passenger},
   { $set: { 'busCompany.$[busCompany].seat.$[seat].isReserved': false ,  'busCompany.$[busCompany].seat.$[seat].name_passenger': null } },
-  { arrayFilters: [{ 'busCompany.name_company': name_company, 'busCompany.number_bus': number_bus },  { 'seat.name_passenger': name_passenger }] }
+  { arrayFilters: [{ 'busCompany.name_company': name_company },  { 'seat.number_bus': number_bus , 'seat.name_passenger': name_passenger }] }
 );
 }
 ///طريقة اخرى لالغاء الحجز 

@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString } from 'class-validator';
+import { IsArray, IsNumber, IsString, IsUrl } from 'class-validator';
 
 export class CreateHotelDto {
  
@@ -8,23 +8,29 @@ export class CreateHotelDto {
     name : string;
 
     @ApiProperty() 
-    @IsString()
-    Number_stars:string;
+    @IsNumber()
+    Number_stars:number;
 
     @ApiProperty()
     @IsString()
     location : string;
 
     @ApiProperty()
-    @IsString()
+    @IsArray()
     details : string;
 
     @ApiProperty()
+    @IsUrl()
+    urlImagehotel:URL;
+
+    @ApiProperty()
+    @IsArray()
     urlImage:Array<string>;
 
     
     @ApiProperty()
-    @IsString()
+    // @IsString()
+    @IsArray()
     Services:Array<string>;
 
        
@@ -33,6 +39,6 @@ export class CreateHotelDto {
     Places_available_visit:Array<string>;
 
     @ApiProperty()
-    @IsString()
-    link: string;
+    @IsUrl()
+    link: URL;
 }

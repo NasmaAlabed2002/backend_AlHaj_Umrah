@@ -9,6 +9,15 @@ export class busCompany extends Document {
   name_company: string;
 
   @Prop()
+  urlImageCompany:URL;
+
+  @Prop()
+  urlImage:Array<string>
+
+  @Prop()
+  link: URL;
+
+  @Prop()
   type_bus: string;
 
   @Prop()
@@ -22,6 +31,7 @@ export class busCompany extends Document {
 
   @Prop({ type :[SeatSchema]}) 
   seat: [{
+    number_bus: number;
     seatNumber: Number,
     name_passenger: String,
     isReserved: boolean
