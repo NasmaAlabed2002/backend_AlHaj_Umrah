@@ -28,7 +28,7 @@ export class ProgramBusController {
     return this.programBusService.createBusCompany(busCompanyDto);
   }
   @Get('buscompany')
-  async getAllBusCompanies() {
+  async findAllBusCompanies() {
     return await this.programBusService.findAllBusCompanies();
   }
   @Get()

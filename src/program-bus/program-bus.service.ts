@@ -28,7 +28,7 @@ export class ProgramBusService {
     return await this.ProgramBusModel.find().populate('id_ProgramUmrah','name_program').exec();
   }
   async findAllBusCompanies() : Promise<busCompany[]> {
-    return this.busCompanyModel.find().exec();
+    return await this.busCompanyModel.find().exec();
   }
 
   async findById(id: string): Promise<ProgramBus> {
