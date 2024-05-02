@@ -54,6 +54,14 @@ export class ProgramBusService {
   }
 
   async reserveSeat(id: string, name_company: string, number_bus: number, seatNumber: number , name_passenger: string): Promise<void> {
+    const existingSeat = await this.ProgramBusModel.findOne(
+      { id, 'busCompany.name_company': name_company, 'busCompany.seat.number_bus': number_bus, 'busCompany.seat.seatNumber': seatNumber },
+      { 'busCompany.$[busCompany].seat.$[seat].isReserved': 1 }
+  );
+
+  if (existingSeat && existingSeat.busCompany[0].seat[0].isReserved) {
+      throw new Error('This seat is already reserved. Please choose another seat.');
+  }
     await this.ProgramBusModel.updateMany(
       { id, 'busCompany.name_company': name_company, 'busCompany.seat.number_bus': number_bus, 'busCompany.seat.seatNumber': seatNumber},
       { $set: { 'busCompany.$[busCompany].seat.$[seat].isReserved': true ,  'busCompany.$[busCompany].seat.$[seat].name_passenger': name_passenger } },
