@@ -24,9 +24,6 @@ export class ProgramBus extends Document {
     link: URL;
     type_bus: string;
     price_tecket: string;
-   
-   
-
     seat: [{
     number_bus: number;
     seatNumber: Number;

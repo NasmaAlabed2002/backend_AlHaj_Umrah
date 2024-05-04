@@ -62,11 +62,7 @@ export class ProgramBusService {
    await this.ProgramBusModel.findByIdAndDelete(id);
   }
   async reserveSeat(id: string, name_company: string, number_bus: number, seatNumber: number , name_passenger: string): Promise<void> {
-    const bus = await this.ProgramBusModel.findOne({
-       id, 'busCompany.name_company': name_company, 
-       'busCompany.seat.number_bus': number_bus,
-        'busCompany.seat.seatNumber': seatNumber });
-
+    const bus = await this.ProgramBusModel.findOne({id});
     if (bus) {
         const seat = bus.busCompany[0].seat.find(
           seat => seat.number_bus === number_bus && seat.seatNumber === seatNumber);

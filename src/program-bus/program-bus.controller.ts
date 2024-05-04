@@ -26,6 +26,12 @@ export class ProgramBusController {
   async findProgramBusWithnameprogramUmrah(): Promise<ProgramBus[]> {
     return this.programBusService.findProgramBusWithnameprogramUmrah();
   }
+  @Get('allBusCompany')
+  // @ApiOperation({ summary: 'Get all BusCompany'})
+  @ApiResponse({ status: 200, description: 'OK'})
+  async getAllBusCompanies(): Promise<busCompany[]> {
+    return this.programBusService.findAllBusCompanies();
+  }
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.programBusService.findOne(id);
@@ -57,13 +63,6 @@ export class ProgramBusController {
   ) {
     const { name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket } = busCompanyDto;
     return this.programBusService.createBusCompany(name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket);
-  }
-
-  @Get('allBusCompany')
-  // @ApiOperation({ summary: 'Get all BusCompany ' })
-  @ApiResponse({ status: 200, description: 'OK'})
-  async getAllBusCompanies(): Promise<busCompany[]> {
-    return this.programBusService.findAllBusCompanies();
   }
   @Patch(':id/update BusCompany')
   @ApiOperation({ summary: 'update BusCompany' })
