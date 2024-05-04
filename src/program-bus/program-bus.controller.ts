@@ -52,11 +52,12 @@ export class ProgramBusController {
     const { name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket } = busCompanyDto;
     return this.programBusService.createBusCompany(name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket);
   }
+
   @Get()
   @ApiOperation({ summary: 'Get all BusCompany ' })
   @ApiResponse({ status: 200, description: 'OK'})
-  async getProgramBusWithnameprogramUmrah() {
-    return this.programBusService.findProgramBusWithnameprogramUmrah();
+  async findAllBusCompanies() {
+    return this.programBusService.findAllBusCompanies();
   }
   @Patch(':id/update BusCompany')
   @ApiOperation({ summary: 'update BusCompany' })
@@ -69,11 +70,11 @@ export class ProgramBusController {
     return this.programBusService.removeBusCompanie(id);
   }
   //////////////////////////////////////////////////////////////////////////////////////////////////////////
-  @Get('')
-  @ApiOperation({ summary: 'Get all ProgramBus with ProgramUmrah name' })
+  @Get()
+  @ApiOperation({ summary: 'Get all ProgramBus with ProgramUmrah name ' })
   @ApiResponse({ status: 200, description: 'OK'})
-  async findAllBusCompanies() {
-    return this.programBusService.findAllBusCompanies();
+  async findProgramBusWithnameprogramUmrah() {
+    return this.programBusService.findProgramBusWithnameprogramUmrah();
   }
   @Get(':id_ProgramUmrah/:name_company/:number_bus/passengers')
   async getPassengersByBus(
