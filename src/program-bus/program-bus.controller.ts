@@ -15,28 +15,6 @@ export class ProgramBusController {
   create(@Body() createProgramBusDto: CreateProgramBusDto) {
     return this.programBusService.create(createProgramBusDto);
   }
-
-  @Get('findAll')
-  findAll() {
-    return this.programBusService.findAll();
-  }
-  @Get('all-ProgramBus-with-ProgramUmrah')
-  @ApiOperation({ summary: 'Get all ProgramBus with ProgramUmrah name ' })
-  @ApiResponse({ status: 200, description: 'OK'})
-  async findProgramBusWithnameprogramUmrah(): Promise<ProgramBus[]> {
-    return this.programBusService.findProgramBusWithnameprogramUmrah();
-  }
-  @Get('allBusCompany')
-  // @ApiOperation({ summary: 'Get all BusCompany'})
-  @ApiResponse({ status: 200, description: 'OK'})
-  async getAllBusCompanies(): Promise<busCompany[]> {
-    return this.programBusService.findAllBusCompanies();
-  }
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.programBusService.findOne(id);
-  }
-  /////////////////////////////////////BusCompany///////////////////////////////////////////
   @Post('buscompany')
   @UseInterceptors(FileInterceptor('buscompany'))
   @ApiConsumes('multipart/form-data')
@@ -64,18 +42,32 @@ export class ProgramBusController {
     const { name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket } = busCompanyDto;
     return this.programBusService.createBusCompany(name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket);
   }
-  @Patch(':id/update BusCompany')
-  @ApiOperation({ summary: 'update BusCompany' })
-  updateBusCompanie(@Param('id') id: string, @Body() udateBusCompanyDto: UpdateBusCompanyDto) {
-    return this.programBusService.updateBusCompanie(id, udateBusCompanyDto);
-  }
-  @Delete(':id/delete BusCompany')
-  @ApiOperation({ summary: 'delete BusCompany' })
-  reremoveBusCompaniemove(@Param('id') id: string) {
-    return this.programBusService.removeBusCompanie(id);
-  }
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+  //////////////////////////////////
+  @Get('findAll')
+  findAll() {
+    return this.programBusService.findAll();
+  }
+  @Get('all-ProgramBus-with-ProgramUmrah')
+  @ApiOperation({ summary: 'Get all ProgramBus with ProgramUmrah name ' })
+  @ApiResponse({ status: 200, description: 'OK'})
+  async findProgramBusWithnameprogramUmrah(): Promise<ProgramBus[]> {
+    return this.programBusService.findProgramBusWithnameprogramUmrah();
+  }
+  @Get('allBusCompany')
+  // @ApiOperation({ summary: 'Get all BusCompany'})
+  @ApiResponse({ status: 200, description: 'OK'})
+  async getAllBusCompanies(): Promise<busCompany[]> {
+    return this.programBusService.findAllBusCompanies();
+  }
+
+  
+  ////////////////////////////////////////////////////
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.programBusService.findOne(id);
+  }
   @Get(':id_ProgramUmrah/:name_company/:number_bus/passengers')
   async getPassengersByBus(
     @Param('id_ProgramUmrah') id_ProgramUmrah: string,
@@ -91,6 +83,13 @@ export class ProgramBusController {
     return this.programBusService.getAvailableSeatsByProgramCompanyAndBus(id_ProgramUmrah, name_company, number_bus);
   }
 
+
+  ////////////////////////////////////////////////////////////////
+  @Patch(':id/update BusCompany')
+  @ApiOperation({ summary: 'update BusCompany' })
+  updateBusCompanie(@Param('id') id: string, @Body() udateBusCompanyDto: UpdateBusCompanyDto) {
+    return this.programBusService.updateBusCompanie(id, udateBusCompanyDto);
+  }
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateProgramBusDto: UpdateProgramBusDto) {
     return this.programBusService.update(id, updateProgramBusDto);
@@ -114,8 +113,16 @@ export class ProgramBusController {
   ) {
     await this.programBusService.cancelReservationByPassengerName(id, name_company,number_bus, name_passenger);
   }
+
+
+  ////////////////////////////////////////////////////////////////////////
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.programBusService.remove(id);
+  }
+  @Delete(':id/delete BusCompany')
+  @ApiOperation({ summary: 'delete BusCompany' })
+  reremoveBusCompaniemove(@Param('id') id: string) {
+    return this.programBusService.removeBusCompanie(id);
   }
 }
