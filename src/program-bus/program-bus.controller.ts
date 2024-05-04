@@ -7,6 +7,7 @@ import { ApiOperation, ApiResponse, ApiBody, ApiConsumes,  ApiTags } from '@nest
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ProgramBus } from './entities/program-bus.entity';
 import { busCompany } from './entities/bus-company.schema';
+import { BusCompanyService } from './program-bus.service';
 @Controller('program-bus')
 export class ProgramBusController {
   constructor(private readonly programBusService: ProgramBusService) {}
@@ -15,34 +16,7 @@ export class ProgramBusController {
   create(@Body() createProgramBusDto: CreateProgramBusDto) {
     return this.programBusService.create(createProgramBusDto);
   }
-  @Post('buscompany')
-  @UseInterceptors(FileInterceptor('buscompany'))
-  @ApiConsumes('multipart/form-data')
-  @ApiBody({
-    schema: {
-      type: 'object',
-      properties: {
-
-        name_company: { type: 'string' },
-        Services: {type: 'array', items: { type: 'string' }  },
-        goals_company: {type: 'array', items: { type: 'string' }  },
-        urlImageCompany: { type: 'URL' },
-        urlImage : {type: 'array', items: { type: 'string' } },
-        link: { type: 'URL' },
-        type_bus: { type: 'string' },
-        price_tecket: { type: 'string' },
-      },
-    },
-  })
-  @ApiResponse({ status: 201, description: 'successfully!' })
-  async createBusCompany(
-    @UploadedFile() 
-    @Body() busCompanyDto: BusCompanyDto,
-  ) {
-    const { name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket } = busCompanyDto;
-    return this.programBusService.createBusCompany(name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket);
-  }
-
+ 
 
   //////////////////////////////////
   @Get('findAll')
@@ -55,14 +29,9 @@ export class ProgramBusController {
   async findProgramBusWithnameprogramUmrah(): Promise<ProgramBus[]> {
     return this.programBusService.findProgramBusWithnameprogramUmrah();
   }
-  @Get('allBusCompany')
-  // @ApiOperation({ summary: 'Get all BusCompany'})
-  @ApiResponse({ status: 200, description: 'OK'})
-  async getAllBusCompanies(): Promise<busCompany[]> {
-    return this.programBusService.findAllBusCompanies();
-  }
 
-  
+
+
   ////////////////////////////////////////////////////
   @Get(':id')
   findOne(@Param('id') id: string) {
@@ -85,11 +54,7 @@ export class ProgramBusController {
 
 
   ////////////////////////////////////////////////////////////////
-  @Patch(':id/update BusCompany')
-  @ApiOperation({ summary: 'update BusCompany' })
-  updateBusCompanie(@Param('id') id: string, @Body() udateBusCompanyDto: UpdateBusCompanyDto) {
-    return this.programBusService.updateBusCompanie(id, udateBusCompanyDto);
-  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateProgramBusDto: UpdateProgramBusDto) {
     return this.programBusService.update(id, updateProgramBusDto);
@@ -120,9 +85,53 @@ export class ProgramBusController {
   remove(@Param('id') id: string) {
     return this.programBusService.remove(id);
   }
+
+}
+@Controller('bus-company')
+export class BusCompanyController {
+  constructor(private readonly busCompanyService: BusCompanyService) {}
+  @Post('buscompany')
+  @UseInterceptors(FileInterceptor('buscompany'))
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+
+        name_company: { type: 'string' },
+        Services: {type: 'array', items: { type: 'string' }  },
+        goals_company: {type: 'array', items: { type: 'string' }  },
+        urlImageCompany: { type: 'URL' },
+        urlImage : {type: 'array', items: { type: 'string' } },
+        link: { type: 'URL' },
+        type_bus: { type: 'string' },
+        price_tecket: { type: 'string' },
+      },
+    },
+  })
+  @ApiResponse({ status: 201, description: 'successfully!' })
+  async createBusCompany(
+    @UploadedFile() 
+    @Body() busCompanyDto: BusCompanyDto,
+  ) {
+    const { name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket } = busCompanyDto;
+    return this.busCompanyService.createBusCompany(name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket);
+  }
+  @Get('allBusCompany')
+  // @ApiOperation({ summary: 'Get all BusCompany'})
+  @ApiResponse({ status: 200, description: 'OK'})
+  async getAllBusCompanies(): Promise<busCompany[]> {
+    return this.busCompanyService.findAllBusCompanies();
+  }
+  @Patch(':id/update BusCompany')
+  @ApiOperation({ summary: 'update BusCompany' })
+  updateBusCompanie(@Param('id') id: string, @Body() udateBusCompanyDto: UpdateBusCompanyDto) {
+    return this.busCompanyService.updateBusCompanie(id, udateBusCompanyDto);
+  }
+
   @Delete(':id/delete BusCompany')
   @ApiOperation({ summary: 'delete BusCompany' })
   reremoveBusCompaniemove(@Param('id') id: string) {
-    return this.programBusService.removeBusCompanie(id);
+    return this.busCompanyService.removeBusCompanie(id);
   }
 }
