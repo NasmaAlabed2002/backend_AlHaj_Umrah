@@ -30,7 +30,7 @@ export class ProgramBusService {
     return createdBusCompany.save();
   }
   async findAllBusCompanies() : Promise<busCompany[]> {
-    return await this.busCompanyModel.find().exec();
+    return await this.busCompanyModel.find();
   }
   async updateBusCompanie(id: string, updateBusCompanyDto: UpdateBusCompanyDto) {
     await this.busCompanyModel.findByIdAndUpdate (id ,updateBusCompanyDto , {new : true});
@@ -57,19 +57,17 @@ export class ProgramBusService {
   }
   async update(id: string, updateProgramBusDto: UpdateProgramBusDto) {
     await this.ProgramBusModel.findByIdAndUpdate (id ,updateProgramBusDto , {new : true});
-
   }
-
   async remove(id: string) {
    await this.ProgramBusModel.findByIdAndDelete(id);
   }
-
   async reserveSeat(id: string, name_company: string, number_bus: number, seatNumber: number , name_passenger: string): Promise<void> {
     const existingSeats = await this.ProgramBusModel.find(
       { id, 'busCompany.name_company': name_company, 'busCompany.seat.number_bus': number_bus   , 'busCompany.seat.seatNumber': seatNumber },
       { 'busCompany.$[busCompany].seat.$[seat].isReserved': 1 }
   );
-  // const isAnySeatAlreadyReserved = existingSeats.some(bus => bus.seat.some(seat => seat.isReserved));
+
+  // const isAnySeatAlreadyReserved = existingSeats.some(busCompany => busCompany seat.some(seat => seat.isReserved));
   //   if (isAnySeatAlreadyReserved) {
   //       throw new Error('One or more seats are already reserved. Please choose another seat.');
   //   }
