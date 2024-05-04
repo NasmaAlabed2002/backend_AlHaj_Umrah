@@ -54,7 +54,7 @@ export class ProgramBusController {
   }
 
   @Get('allBusCompany')
-  @ApiOperation({ summary: 'Get all BusCompany ' })
+  // @ApiOperation({ summary: 'Get all BusCompany ' })
   @ApiResponse({ status: 200, description: 'OK'})
   async findAllBusCompanies() {
     return this.programBusService.findAllBusCompanies();

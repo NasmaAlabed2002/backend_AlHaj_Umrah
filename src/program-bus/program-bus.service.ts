@@ -62,15 +62,17 @@ export class ProgramBusService {
    await this.ProgramBusModel.findByIdAndDelete(id);
   }
   async reserveSeat(id: string, name_company: string, number_bus: number, seatNumber: number , name_passenger: string): Promise<void> {
-    const existingSeats = await this.ProgramBusModel.find(
-      { id, 'busCompany.name_company': name_company, 'busCompany.seat.number_bus': number_bus   , 'busCompany.seat.seatNumber': seatNumber },
-      { 'busCompany.$[busCompany].seat.$[seat].isReserved': 1 }
-  );
-
-  // const isAnySeatAlreadyReserved = existingSeats.some(busCompany => busCompany seat.some(seat => seat.isReserved));
-  //   if (isAnySeatAlreadyReserved) {
-  //       throw new Error('One or more seats are already reserved. Please choose another seat.');
-  //   }
+    const coseat = await this.ProgramBusModel.findOne({
+      id,
+      'busCompany.name_company': name_company,
+      'busCompany.seat.number_bus': number_bus,
+      'busCompany.seat.seatNumber': seatNumber
+    });
+  
+    const x1= coseat.busCompany[0];
+    if (x1 && x1.seat && x1.seat[0].isReserved) {
+      throw new Error('المقعد تم حجزه مسبقًا. يرجى اختيار مقعد آخر.');
+    }
     await this.ProgramBusModel.updateMany(
       { id, 'busCompany.name_company': name_company, 'busCompany.seat.number_bus': number_bus, 'busCompany.seat.seatNumber': seatNumber},
       { $set: { 'busCompany.$[busCompany].seat.$[seat].isReserved': true ,  'busCompany.$[busCompany].seat.$[seat].name_passenger': name_passenger } },
