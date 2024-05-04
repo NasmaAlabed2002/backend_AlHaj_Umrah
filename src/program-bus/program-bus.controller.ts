@@ -6,6 +6,7 @@ import { BusCompanyDto , UpdateBusCompanyDto } from './dto/bus-company.dto';
 import { ApiOperation, ApiResponse, ApiBody, ApiConsumes,  ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ProgramBus } from './entities/program-bus.entity';
+import { busCompany } from './entities/bus-company.schema';
 @Controller('program-bus')
 export class ProgramBusController {
   constructor(private readonly programBusService: ProgramBusService) {}
@@ -22,7 +23,7 @@ export class ProgramBusController {
   @Get('all-ProgramBus-with-ProgramUmrah')
   @ApiOperation({ summary: 'Get all ProgramBus with ProgramUmrah name ' })
   @ApiResponse({ status: 200, description: 'OK'})
-  async findProgramBusWithnameprogramUmrah() {
+  async findProgramBusWithnameprogramUmrah(): Promise<ProgramBus[]> {
     return this.programBusService.findProgramBusWithnameprogramUmrah();
   }
   @Get(':id')
@@ -61,7 +62,7 @@ export class ProgramBusController {
   @Get('allBusCompany')
   // @ApiOperation({ summary: 'Get all BusCompany ' })
   @ApiResponse({ status: 200, description: 'OK'})
-  async getAllBusCompanies() {
+  async getAllBusCompanies(): Promise<busCompany[]> {
     return this.programBusService.findAllBusCompanies();
   }
   @Patch(':id/update BusCompany')
