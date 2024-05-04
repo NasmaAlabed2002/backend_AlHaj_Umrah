@@ -29,7 +29,7 @@ export class ProgramBusService {
     const createdBusCompany = new this.busCompanyModel({name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket});
     return createdBusCompany.save();
   }
-  async findAllBusCompanies() : Promise<busCompany[]> {
+  async findAllBusCompanies()  {
     return await this.busCompanyModel.find();
   }
   async updateBusCompanie(id: string, updateBusCompanyDto: UpdateBusCompanyDto) {
@@ -62,17 +62,19 @@ export class ProgramBusService {
    await this.ProgramBusModel.findByIdAndDelete(id);
   }
   async reserveSeat(id: string, name_company: string, number_bus: number, seatNumber: number , name_passenger: string): Promise<void> {
-    const coseat = await this.ProgramBusModel.findOne({
-      id,
-      'busCompany.name_company': name_company,
-      'busCompany.seat.number_bus': number_bus,
-      'busCompany.seat.seatNumber': seatNumber
-    });
+    // const coseat = await this.ProgramBusModel.findOne({
+    //   id,
+    //   'busCompany.name_company': name_company,
+    //   'busCompany.seat.number_bus': number_bus,
+    //   'busCompany.seat.seatNumber': seatNumber
+    // });
   
-    const x1= coseat.busCompany[0];
-    if (x1 && x1.seat && x1.seat[0].isReserved) {
-      throw new Error('المقعد تم حجزه مسبقًا. يرجى اختيار مقعد آخر.');
-    }
+    // const x1= coseat.busCompany[1];
+    // // const y2 = x1.seat;
+    // // const y3 = y2.is
+    // if (x1 && x1.seat[seatNumber] && x1.seat[seatNumber].isReserved) {
+    //   throw new Error('المقعد تم حجزه مسبقًا. يرجى اختيار مقعد آخر.');
+    // }
     await this.ProgramBusModel.updateMany(
       { id, 'busCompany.name_company': name_company, 'busCompany.seat.number_bus': number_bus, 'busCompany.seat.seatNumber': seatNumber},
       { $set: { 'busCompany.$[busCompany].seat.$[seat].isReserved': true ,  'busCompany.$[busCompany].seat.$[seat].name_passenger': name_passenger } },

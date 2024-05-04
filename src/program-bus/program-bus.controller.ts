@@ -19,7 +19,12 @@ export class ProgramBusController {
   findAll() {
     return this.programBusService.findAll();
   }
-
+  @Get('all-ProgramBus-with-ProgramUmrah')
+  @ApiOperation({ summary: 'Get all ProgramBus with ProgramUmrah name ' })
+  @ApiResponse({ status: 200, description: 'OK'})
+  async findProgramBusWithnameprogramUmrah() {
+    return this.programBusService.findProgramBusWithnameprogramUmrah();
+  }
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.programBusService.findOne(id);
@@ -56,7 +61,7 @@ export class ProgramBusController {
   @Get('allBusCompany')
   // @ApiOperation({ summary: 'Get all BusCompany ' })
   @ApiResponse({ status: 200, description: 'OK'})
-  async findAllBusCompanies() {
+  async getAllBusCompanies() {
     return this.programBusService.findAllBusCompanies();
   }
   @Patch(':id/update BusCompany')
@@ -70,12 +75,7 @@ export class ProgramBusController {
     return this.programBusService.removeBusCompanie(id);
   }
   //////////////////////////////////////////////////////////////////////////////////////////////////////////
-  @Get()
-  @ApiOperation({ summary: 'Get all ProgramBus with ProgramUmrah name ' })
-  @ApiResponse({ status: 200, description: 'OK'})
-  async findProgramBusWithnameprogramUmrah() {
-    return this.programBusService.findProgramBusWithnameprogramUmrah();
-  }
+
   @Get(':id_ProgramUmrah/:name_company/:number_bus/passengers')
   async getPassengersByBus(
     @Param('id_ProgramUmrah') id_ProgramUmrah: string,
