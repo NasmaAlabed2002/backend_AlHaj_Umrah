@@ -53,7 +53,7 @@ export class ProgramBusController {
     return this.programBusService.createBusCompany(name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket);
   }
 
-  @Get('Get all BusCompany')
+  @Get('allBusCompany')
   @ApiOperation({ summary: 'Get all BusCompany ' })
   @ApiResponse({ status: 200, description: 'OK'})
   async findAllBusCompanies() {
