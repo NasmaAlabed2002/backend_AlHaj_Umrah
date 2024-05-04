@@ -2,6 +2,7 @@ import { IsString, IsNumber, IsArray, ValidateNested, IsUrl } from 'class-valida
 import { ApiProperty } from "@nestjs/swagger";
 import { Type } from 'class-transformer';
 import { SeatDto } from './seat.dto';
+import { PartialType } from '@nestjs/mapped-types';
 
 export class BusCompanyDto {
   @ApiProperty()
@@ -43,3 +44,5 @@ export class BusCompanyDto {
   @Type(() => SeatDto)
   seat: SeatDto[];
  }
+
+ export class UpdateBusCompanyDto extends PartialType(BusCompanyDto) {}

@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateProgramBusDto } from './dto/create-program-bus.dto';
 import { UpdateProgramBusDto } from './dto/update-program-bus.dto';
 import { ProgramBus , ProgramBusDocument } from './entities/program-bus.entity';
-import { BusCompanyDto } from './dto/bus-company.dto';
+import { BusCompanyDto , UpdateBusCompanyDto} from './dto/bus-company.dto';
 import { busCompany , busCompanySchema , busCompanyDocument} from './entities/bus-company.schema';
 import { Seat , SeatSchema } from './entities/seat.schema';
 import { InjectModel } from '@nestjs/mongoose';
@@ -19,17 +19,28 @@ export class ProgramBusService {
     const createdProgramBus = new this.ProgramBusModel(createProgramBusDto);
     return createdProgramBus.save();
   }
+  async findProgramBusWithnameprogramUmrah(): Promise<ProgramBus[]>{
+    return await this.ProgramBusModel.find().populate('id_ProgramUmrah','name_program').exec();
+  }
+
+
+  /////////////////////BusCompany//////////////////////////////////
   async createBusCompany(  name_company: string,  Services, goals_company , urlImageCompany:URL , urlImage,link: URL, type_bus: string , price_tecket: string): Promise<busCompany> {
     const createdBusCompany = new this.busCompanyModel({name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket});
     return createdBusCompany.save();
   }
-
-  async findProgramBusWithnameprogramUmrah(): Promise<ProgramBus[]>{
-    return await this.ProgramBusModel.find().populate('id_ProgramUmrah','name_program').exec();
-  }
   async findAllBusCompanies() : Promise<busCompany[]> {
     return await this.busCompanyModel.find().exec();
   }
+  async updateBusCompanie(id: string, updateBusCompanyDto: UpdateBusCompanyDto) {
+    await this.busCompanyModel.findByIdAndUpdate (id ,updateBusCompanyDto , {new : true});
+  }
+  async removeBusCompanie(id: string) {
+    await this.busCompanyModel.findByIdAndDelete(id);
+   }
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
   async findById(id: string): Promise<ProgramBus> {
     return await this.ProgramBusModel.findById(id).exec();
@@ -54,14 +65,14 @@ export class ProgramBusService {
   }
 
   async reserveSeat(id: string, name_company: string, number_bus: number, seatNumber: number , name_passenger: string): Promise<void> {
-    const existingSeat = await this.ProgramBusModel.findOne(
-      { id, 'busCompany.name_company': name_company, 'busCompany.seat.number_bus': number_bus, 'busCompany.seat.seatNumber': seatNumber },
+    const existingSeats = await this.ProgramBusModel.find(
+      { id, 'busCompany.name_company': name_company, 'busCompany.seat.number_bus': number_bus   , 'busCompany.seat.seatNumber': seatNumber },
       { 'busCompany.$[busCompany].seat.$[seat].isReserved': 1 }
   );
-
-  if (existingSeat && existingSeat.busCompany[0].seat[0].isReserved) {
-      throw new Error('This seat is already reserved. Please choose another seat.');
-  }
+  // const isAnySeatAlreadyReserved = existingSeats.some(bus => bus.seat.some(seat => seat.isReserved));
+  //   if (isAnySeatAlreadyReserved) {
+  //       throw new Error('One or more seats are already reserved. Please choose another seat.');
+  //   }
     await this.ProgramBusModel.updateMany(
       { id, 'busCompany.name_company': name_company, 'busCompany.seat.number_bus': number_bus, 'busCompany.seat.seatNumber': seatNumber},
       { $set: { 'busCompany.$[busCompany].seat.$[seat].isReserved': true ,  'busCompany.$[busCompany].seat.$[seat].name_passenger': name_passenger } },

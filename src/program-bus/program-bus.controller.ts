@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete , UseInterceptors, Up
 import { ProgramBusService } from './program-bus.service';
 import { CreateProgramBusDto } from './dto/create-program-bus.dto';
 import { UpdateProgramBusDto } from './dto/update-program-bus.dto';
-import { BusCompanyDto } from './dto/bus-company.dto';
+import { BusCompanyDto , UpdateBusCompanyDto } from './dto/bus-company.dto';
 import { ApiOperation, ApiResponse, ApiBody, ApiConsumes,  ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ProgramBus } from './entities/program-bus.entity';
@@ -24,6 +24,7 @@ export class ProgramBusController {
   findOne(@Param('id') id: string) {
     return this.programBusService.findOne(id);
   }
+  /////////////////////////////////////BusCompany///////////////////////////////////////////
   @Post('buscompany')
   @UseInterceptors(FileInterceptor('buscompany'))
   @ApiConsumes('multipart/form-data')
@@ -51,20 +52,29 @@ export class ProgramBusController {
     const { name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket } = busCompanyDto;
     return this.programBusService.createBusCompany(name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket);
   }
- 
-  @Get('')
-  @ApiOperation({ summary: 'Get all ProgramBus with ProgramUmrah name' })
-  @ApiResponse({ status: 200, description: 'OK'})
-  async findAllBusCompanies() {
-    return this.programBusService.findAllBusCompanies();
-  }
   @Get()
   @ApiOperation({ summary: 'Get all BusCompany ' })
   @ApiResponse({ status: 200, description: 'OK'})
   async getProgramBusWithnameprogramUmrah() {
     return this.programBusService.findProgramBusWithnameprogramUmrah();
   }
-
+  @Patch(':id')
+  @ApiOperation({ summary: 'update BusCompany' })
+  updateBusCompanie(@Param('id') id: string, @Body() udateBusCompanyDto: UpdateBusCompanyDto) {
+    return this.programBusService.updateBusCompanie(id, udateBusCompanyDto);
+  }
+  @Delete(':id')
+  @ApiOperation({ summary: 'delete BusCompany' })
+  reremoveBusCompaniemove(@Param('id') id: string) {
+    return this.programBusService.removeBusCompanie(id);
+  }
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+  @Get('')
+  @ApiOperation({ summary: 'Get all ProgramBus with ProgramUmrah name' })
+  @ApiResponse({ status: 200, description: 'OK'})
+  async findAllBusCompanies() {
+    return this.programBusService.findAllBusCompanies();
+  }
   @Get(':id_ProgramUmrah/:name_company/:number_bus/passengers')
   async getPassengersByBus(
     @Param('id_ProgramUmrah') id_ProgramUmrah: string,
