@@ -58,12 +58,12 @@ export class ProgramBusController {
   async getProgramBusWithnameprogramUmrah() {
     return this.programBusService.findProgramBusWithnameprogramUmrah();
   }
-  @Patch(':id')
+  @Patch(':id/update BusCompany')
   @ApiOperation({ summary: 'update BusCompany' })
   updateBusCompanie(@Param('id') id: string, @Body() udateBusCompanyDto: UpdateBusCompanyDto) {
     return this.programBusService.updateBusCompanie(id, udateBusCompanyDto);
   }
-  @Delete(':id')
+  @Delete(':id/delete BusCompany')
   @ApiOperation({ summary: 'delete BusCompany' })
   reremoveBusCompaniemove(@Param('id') id: string) {
     return this.programBusService.removeBusCompanie(id);
