@@ -13,7 +13,7 @@ import { ProgramUmrah , ProgramUmrahDocument } from 'src/program_umrah/entities/
 export class ProgramBusService {
   constructor(@InjectModel( ProgramBus.name) private  readonly ProgramBusModel: Model< ProgramBusDocument>, 
     @InjectModel(ProgramUmrah.name) private readonly programUmrahModel: Model<ProgramUmrahDocument>,
-    @InjectModel(busCompany.name) private readonly busCompanyModel: Model<busCompany>,
+    @InjectModel(busCompany.name) private readonly busCompanyModel: Model<busCompanyDocument>,
     ) {}
   async create(createProgramBusDto: CreateProgramBusDto) :Promise< ProgramBus > {
     const createdProgramBus = new this.ProgramBusModel(createProgramBusDto);
