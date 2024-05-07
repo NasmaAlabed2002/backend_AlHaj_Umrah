@@ -10,6 +10,7 @@ import { Model } from 'mongoose';
 import { ProgramUmrah , ProgramUmrahDocument } from 'src/program_umrah/entities/program_umrah.entity';
 
 @Injectable()
+
 export class ProgramBusService {
   constructor(@InjectModel( ProgramBus.name) private  readonly ProgramBusModel: Model< ProgramBusDocument>, 
     @InjectModel(ProgramUmrah.name) private readonly programUmrahModel: Model<ProgramUmrahDocument>,

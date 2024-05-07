@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete , UseInterceptors, UploadedFile,} from '@nestjs/common';
-import { ProgramBusService } from './program-bus.service';
+import { ProgramBusService  } from './program-bus.service';
+import { BusCompanyService } from './bus-company.service';
 import { CreateProgramBusDto } from './dto/create-program-bus.dto';
 import { UpdateProgramBusDto } from './dto/update-program-bus.dto';
 import { BusCompanyDto  } from './dto/bus-company.dto';
@@ -11,7 +12,8 @@ import { busCompany } from './entities/bus-company.schema';
 
 @Controller('program-bus')
 export class ProgramBusController {
-  constructor(private readonly programBusService: ProgramBusService) {}
+  constructor(private readonly programBusService: ProgramBusService , private readonly  busCompanyService: BusCompanyService) {}
+
 
   @Post()
   create(@Body() createProgramBusDto: CreateProgramBusDto) {
@@ -43,7 +45,7 @@ export class ProgramBusController {
     @Body() busCompanyDto: BusCompanyDto,
   ) {
     const { name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket } = busCompanyDto;
-    return this.programBusService.createBusCompany(name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket);
+    return this.busCompanyService.createBusCompany(name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket);
   }
   //////////////////////////////////
   @Get('findAll')
@@ -61,7 +63,7 @@ export class ProgramBusController {
   // @ApiOperation({ summary: 'Get all BusCompany'})
   @ApiResponse({ status: 200, description: 'OK'})
   async getAllBusCompanies(): Promise<busCompany[]> {
-    return this.programBusService.findAllBusCompanies();
+    return this.busCompanyService.findAllBusCompanies();
   }
 
   ////////////////////////////////////////////////////
@@ -113,7 +115,7 @@ export class ProgramBusController {
   @Patch(':id/update BusCompany')
   @ApiOperation({ summary: 'update BusCompany' })
   updateBusCompanie(@Param('id') id: string, @Body() udateBusCompanyDto: UpdateBusCompanyDto) {
-    return this.programBusService.updateBusCompanie(id, udateBusCompanyDto);
+    return this.busCompanyService.updateBusCompanie(id, udateBusCompanyDto);
   }
 
  
@@ -126,6 +128,8 @@ export class ProgramBusController {
   @Delete(':id/delete BusCompany')
   @ApiOperation({ summary: 'delete BusCompany' })
   reremoveBusCompaniemove(@Param('id') id: string) {
-    return this.programBusService.removeBusCompanie(id);
+    return this.busCompanyService.removeBusCompanie(id);
   }
+    // constructor(private readonly ) {}
 }
+//bus-company.dto
