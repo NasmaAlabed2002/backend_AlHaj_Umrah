@@ -5,6 +5,7 @@ import { ProgramBus , ProgramBuschema } from './entities/program-bus.entity';
 import { ProgramUmrah, ProgramUmrahchema } from 'src/program_umrah/entities/program_umrah.entity';
 import { busCompany , busCompanySchema } from './entities/bus-company.schema';
 import { Seat , SeatSchema } from './entities/seat.schema';
+import { BusCompanyController } from './bus-company.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 @Module({
   imports: 
@@ -25,7 +26,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 //     } 
 //   }  
 // ])],
-  controllers: [ProgramBusController ],
+  controllers: [ProgramBusController , BusCompanyController],
   providers: [ProgramBusService],
 })
 export class ProgramBusModule {}
