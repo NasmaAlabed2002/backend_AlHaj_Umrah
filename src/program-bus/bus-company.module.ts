@@ -4,7 +4,8 @@ import { busCompany , busCompanySchema } from './entities/bus-company.schema';
 import { Seat , SeatSchema } from './entities/seat.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 import { BusCompanyController } from './bus-company.controller';
-import { BusCompanyService } from './program-bus.service';
+import { BusCompanyService } from './bus-company.service';
+
 @Module({
   imports: 
   [

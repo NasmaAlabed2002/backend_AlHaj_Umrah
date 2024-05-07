@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete , UseInterceptors, UploadedFile,} from '@nestjs/common';
-import { BusCompanyService} from './program-bus.service';
+import { BusCompanyService } from './bus-company.service';
 import { BusCompanyDto , UpdateBusCompanyDto } from './dto/bus-company.dto';
 import { ApiOperation, ApiResponse, ApiBody, ApiConsumes,  ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
