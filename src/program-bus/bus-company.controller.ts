@@ -44,13 +44,13 @@ export class BusCompanyController {
     async getAllBusCompanies(): Promise<busCompany[]> {
       return this.busCompanyService.findAllBusCompanies();
     }
-    @Patch(':id/update BusCompany')
+    @Patch(':id')
     @ApiOperation({ summary: 'update BusCompany' })
     updateBusCompanie(@Param('id') id: string, @Body() udateBusCompanyDto: UpdateBusCompanyDto) {
       return this.busCompanyService.updateBusCompanie(id, udateBusCompanyDto);
     }
   
-    @Delete(':id/delete BusCompany')
+    @Delete(':id')
     @ApiOperation({ summary: 'delete BusCompany' })
     reremoveBusCompaniemove(@Param('id') id: string) {
       return this.busCompanyService.removeBusCompanie(id);
