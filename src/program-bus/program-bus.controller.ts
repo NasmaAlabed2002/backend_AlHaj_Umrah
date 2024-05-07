@@ -88,7 +88,7 @@ export class ProgramBusController {
 
 }
 @Controller('bus-company')
-export class BusCompanyController {
+export class BbusCompanyController {
   constructor(private readonly busCompanyService: BusCompanyService) {}
   @Post('buscompany')
   @UseInterceptors(FileInterceptor('buscompany'))

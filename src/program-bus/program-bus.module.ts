@@ -6,6 +6,7 @@ import { ProgramUmrah, ProgramUmrahchema } from 'src/program_umrah/entities/prog
 import { busCompany , busCompanySchema } from './entities/bus-company.schema';
 import { Seat , SeatSchema } from './entities/seat.schema';
 import { MongooseModule } from '@nestjs/mongoose';
+import { BusCompanyController } from './bus-company.controller';
 @Module({
   imports: 
   [
@@ -25,7 +26,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 //     } 
 //   }  
 // ])],
-  controllers: [ProgramBusController],
+  controllers: [ProgramBusController , BusCompanyController],
+
   providers: [ProgramBusService],
 })
 export class ProgramBusModule {}
