@@ -10,9 +10,7 @@ import { busCompany } from './entities/bus-company.schema';
 
 @Controller('program-bus')
 export class ProgramBusController {
-  constructor(private readonly programBusService: ProgramBusService,
-    private readonly busCompanyService: BusCompanyService
-  ) {}
+  constructor(private readonly programBusService: ProgramBusService) {}
 
   @Post()
   create(@Body() createProgramBusDto: CreateProgramBusDto) {
