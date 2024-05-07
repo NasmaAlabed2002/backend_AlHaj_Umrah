@@ -12,7 +12,8 @@ import { busCompany } from './entities/bus-company.schema';
 
 @Controller('program-bus')
 export class ProgramBusController {
-  constructor(private readonly programBusService: ProgramBusService , private readonly  busCompanyService: BusCompanyService) {}
+  constructor(private readonly programBusService: ProgramBusService ,
+     private readonly  busCompanyService: BusCompanyService) {}
 
 
   @Post()
@@ -130,6 +131,5 @@ export class ProgramBusController {
   reremoveBusCompaniemove(@Param('id') id: string) {
     return this.busCompanyService.removeBusCompanie(id);
   }
-    // constructor(private readonly ) {}
+
 }
-//bus-company.dto
