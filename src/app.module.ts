@@ -18,13 +18,13 @@ import { ProgAlHajHotelModule } from './prog_al-haj_hotel/prog_al-haj_hotel.modu
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { CloudinaryProvider } from './cloudinary/cloudinary';
 import { ProgramUmrahSpecialModule } from './program_umrah_special/program_umrah_special.module';
-
+import { BusCompanyModule } from './program-bus/bus-company.module';
 
 
 @Module({
   imports: [
 
-    MongooseModule.forRoot('mongodb+srv://NasmaAlAbed:GIKGHxRgWrd1J1uY@cluster0.nolvplt.mongodb.net/all-data?retryWrites=true&w=majority'),  HotelModule, HotelRoomModule, ProgramBusModule, OfficeModule, EmployeeModule, AlHajjModule, AlMutamirModule, ProgramUmrahModule, ProgramAlHajModule, ProgUmrahAirlineModule,
+    MongooseModule.forRoot('mongodb+srv://NasmaAlAbed:GIKGHxRgWrd1J1uY@cluster0.nolvplt.mongodb.net/all-data?retryWrites=true&w=majority'),  HotelModule, HotelRoomModule, ProgramBusModule, OfficeModule, EmployeeModule, AlHajjModule, AlMutamirModule, ProgramUmrahModule, ProgramAlHajModule, ProgUmrahAirlineModule,BusCompanyModule,
      ProgHajAirlineModule, ProgUmrahHotelModule, ProgAlHajHotelModule, CloudinaryModule, ProgramUmrahSpecialModule ],
 
 

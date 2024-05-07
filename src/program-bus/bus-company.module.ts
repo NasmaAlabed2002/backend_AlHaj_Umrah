@@ -4,6 +4,7 @@ import { busCompany , busCompanySchema } from './entities/bus-company.schema';
 import { Seat , SeatSchema } from './entities/seat.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 import { BusCompanyController } from './bus-company.controller';
+import { BusCompanyService } from './program-bus.service';
 @Module({
   imports: 
   [
@@ -23,6 +24,6 @@ import { BusCompanyController } from './bus-company.controller';
 // ])],
   controllers: [ BusCompanyController],
 
-  providers: [ProgramBusService],
+  providers: [BusCompanyService],
 })
-export class ProgramBusModule {}
+export class BusCompanyModule {}
