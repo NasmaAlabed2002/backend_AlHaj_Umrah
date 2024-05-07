@@ -3,7 +3,7 @@ import { CreateProgramBusDto } from './dto/create-program-bus.dto';
 import { UpdateProgramBusDto } from './dto/update-program-bus.dto';
 import { ProgramBus , ProgramBusDocument } from './entities/program-bus.entity';
 import { BusCompanyDto 
-  // , UpdateBusCompanyDto
+ , UpdateBusCompanyDto
 } from './dto/bus-company.dto';
 import { busCompany , busCompanySchema , busCompanyDocument} from './entities/bus-company.schema';
 import { Seat , SeatSchema } from './entities/seat.schema';
@@ -11,26 +11,26 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ProgramUmrah , ProgramUmrahDocument } from 'src/program_umrah/entities/program_umrah.entity';
 
-// @Injectable()
-// export class BusCompanyService {
-//   constructor(
-//     @InjectModel(busCompany.name) private readonly busCompanyModel: Model<busCompanyDocument>,
-//   ) {}
+@Injectable()
+export class BusCompanyService {
+  constructor(
+    @InjectModel(busCompany.name) private readonly busCompanyModel: Model<busCompanyDocument>,
+  ) {}
 
-//   async createBusCompany(  name_company: string,  Services, goals_company , urlImageCompany:URL , urlImage,link: URL, type_bus: string , price_tecket: string): Promise<busCompany> {
-//     const createdBusCompany = new this.busCompanyModel({name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket});
-//     return createdBusCompany.save();
-//   }
-//   async findAllBusCompanies(): Promise<busCompany[]> {
-//     return await this.busCompanyModel.find();
-//   }
-//   async updateBusCompanie(id: string, updateBusCompanyDto: UpdateBusCompanyDto) {
-//     await this.busCompanyModel.findByIdAndUpdate (id ,updateBusCompanyDto , {new : true});
-//   }
-//   async removeBusCompanie(id: string) {
-//     await this.busCompanyModel.findByIdAndDelete(id);
-//    }
-// }
+  async createBusCompany(  name_company: string,  Services, goals_company , urlImageCompany:URL , urlImage,link: URL, type_bus: string , price_tecket: string): Promise<busCompany> {
+    const createdBusCompany = new this.busCompanyModel({name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket});
+    return createdBusCompany.save();
+  }
+  async findAllBusCompanies(): Promise<busCompany[]> {
+    return await this.busCompanyModel.find();
+  }
+  async updateBusCompanie(id: string, updateBusCompanyDto: UpdateBusCompanyDto) {
+    await this.busCompanyModel.findByIdAndUpdate (id ,updateBusCompanyDto , {new : true});
+  }
+  async removeBusCompanie(id: string) {
+    await this.busCompanyModel.findByIdAndDelete(id);
+   }
+}
 
 @Injectable()
 export class ProgramBusService {
