@@ -10,13 +10,41 @@ import { busCompany } from './entities/bus-company.schema';
 
 @Controller('program-bus')
 export class ProgramBusController {
-  constructor(private readonly programBusService: ProgramBusService) {}
+  constructor(private readonly programBusService: ProgramBusService,
+    private readonly busCompanyService: BusCompanyService
+  ) {}
 
   @Post()
   create(@Body() createProgramBusDto: CreateProgramBusDto) {
     return this.programBusService.create(createProgramBusDto);
   }
- 
+  @Post('buscompany')
+  @UseInterceptors(FileInterceptor('buscompany'))
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+
+        name_company: { type: 'string' },
+        Services: {type: 'array', items: { type: 'string' }  },
+        goals_company: {type: 'array', items: { type: 'string' }  },
+        urlImageCompany: { type: 'URL' },
+        urlImage : {type: 'array', items: { type: 'string' } },
+        link: { type: 'URL' },
+        type_bus: { type: 'string' },
+        price_tecket: { type: 'string' },
+      },
+    },
+  })
+  @ApiResponse({ status: 201, description: 'successfully!' })
+  async createBusCompany(
+    @UploadedFile() 
+    @Body() busCompanyDto: BusCompanyDto,
+  ) {
+    const { name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket } = busCompanyDto;
+    return this.busCompanyService.createBusCompany(name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket);
+  }
 
   //////////////////////////////////
   @Get('findAll')
