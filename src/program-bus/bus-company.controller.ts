@@ -9,32 +9,35 @@ import { busCompany } from './entities/bus-company.schema';
 export class BusCompanyController {
     constructor(private readonly busCompanyService: BusCompanyService) {}
     @Post('buscompany')
-    @UseInterceptors(FileInterceptor('buscompany'))
-    @ApiConsumes('multipart/form-data')
-    @ApiBody({
-      schema: {
-        type: 'object',
-        properties: {
+    create(@Body() busCompanyDto: BusCompanyDto) {
+        return this.busCompanyService.createBusCompany(busCompanyDto);
+      }
+    // @UseInterceptors(FileInterceptor('buscompany'))
+    // @ApiConsumes('multipart/form-data')
+    // @ApiBody({
+    //   schema: {
+    //     type: 'object',
+    //     properties: {
   
-          name_company: { type: 'string' },
-          Services: {type: 'array', items: { type: 'string' }  },
-          goals_company: {type: 'array', items: { type: 'string' }  },
-          urlImageCompany: { type: 'URL' },
-          urlImage : {type: 'array', items: { type: 'string' } },
-          link: { type: 'URL' },
-          type_bus: { type: 'string' },
-          price_tecket: { type: 'string' },
-        },
-      },
-    })
-    @ApiResponse({ status: 201, description: 'successfully!' })
-    async createBusCompany(
-      @UploadedFile() 
-      @Body() busCompanyDto: BusCompanyDto,
-    ) {
-      const { name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket } = busCompanyDto;
-      return this.busCompanyService.createBusCompany(name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket);
-    }
+    //       name_company: { type: 'string' },
+    //       Services: {type: 'array', items: { type: 'string' }  },
+    //       goals_company: {type: 'array', items: { type: 'string' }  },
+    //       urlImageCompany: { type: 'URL' },
+    //       urlImage : {type: 'array', items: { type: 'string' } },
+    //       link: { type: 'URL' },
+    //       type_bus: { type: 'string' },
+    //       price_tecket: { type: 'string' },
+    //     },
+    //   },
+    // })
+    // @ApiResponse({ status: 201, description: 'successfully!' })
+    // async createBusCompany(
+    //   @UploadedFile() 
+    //   @Body() busCompanyDto: BusCompanyDto,
+    // ) {
+    //   const { name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket } = busCompanyDto;
+    //   return this.busCompanyService.createBusCompany(name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket);
+    // }
     @Get('allBusCompany')
     // @ApiOperation({ summary: 'Get all BusCompany'})
     @ApiResponse({ status: 200, description: 'OK'})
