@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete , UseInterceptors, UploadedFile,} from '@nestjs/common';
 import { ProgramBusService  } from './program-bus.service';
-import { BusCompanyService } from './bus-company.service';
+import { BusCompanyService  } from './bus-company.service';
 import { CreateProgramBusDto } from './dto/create-program-bus.dto';
 import { UpdateProgramBusDto } from './dto/update-program-bus.dto';
 import { BusCompanyDto  } from './dto/bus-company.dto';
