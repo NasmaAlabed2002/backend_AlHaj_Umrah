@@ -5,7 +5,7 @@ import { ApiOperation, ApiResponse, ApiBody, ApiConsumes,  ApiTags } from '@nest
 import { FileInterceptor } from '@nestjs/platform-express';
 import { busCompany } from './entities/bus-company.schema';
 
-
+@Controller('BusCompany')
 export class BusCompanyController {
     constructor(private readonly busCompanyService: BusCompanyService) {}
     @Post('buscompany')
