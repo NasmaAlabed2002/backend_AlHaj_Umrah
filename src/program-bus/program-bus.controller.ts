@@ -29,7 +29,12 @@ export class ProgramBusController {
   async findProgramBusWithnameprogramUmrah(): Promise<ProgramBus[]> {
     return this.programBusService.findProgramBusWithnameprogramUmrah();
   }
-
+  @Get('allBusCompany')
+    // @ApiOperation({ summary: 'Get all BusCompany'})
+    @ApiResponse({ status: 200, description: 'OK'})
+    async getAllBusCompanies(): Promise<busCompany[]> {
+      return this.programBusService.findAllBusCompanies();
+    }
 
 
   ////////////////////////////////////////////////////
