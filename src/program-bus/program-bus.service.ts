@@ -45,9 +45,9 @@ export class ProgramBusService {
   async findProgramBusWithnameprogramUmrah(): Promise<ProgramBus[]>{
     return await this.ProgramBusModel.find().populate('id_ProgramUmrah','name_program').exec();
   }
-  async findAllBusCompanies(): Promise<busCompany[]> {
-    return await this.ProgramBusModel.find();
-     }
+  // async findAllBusCompanies(): Promise<busCompany[]> {
+  //   return await this.ProgramBusModel.find();
+  //    }
 
   /////////////////////BusCompany//////////////////////////////////
  
@@ -63,7 +63,7 @@ export class ProgramBusService {
   }
 
   async findOne(id) {
-    return await this.ProgramBusModel.findOne({_id:id})
+    return await this.ProgramBusModel.findOne({_id:id}).populate('id_busCompany','name_company').exec();
   }
   async findid(id) {
     return await this.ProgramBusModel.findById({_id:id})
@@ -77,7 +77,7 @@ export class ProgramBusService {
   async reserveSeat(id: string, name_company: string, number_bus: number, seatNumber: number , name_passenger: string): Promise<void> {
     const bus = await this.ProgramBusModel.findOne({id});
     if (bus) {
-        const seat = bus.busCompany[0].seat.find(
+        const seat = bus.seat.find(
           seat => seat.number_bus === number_bus && seat.seatNumber === seatNumber);
 
         if (seat && seat.isReserved) {
@@ -127,11 +127,13 @@ export class ProgramBusService {
         },
       })
       .exec();
-    if (!programBus || !programBus.busCompany.length) {
+    if (!programBus 
+      // || !programBus.length
+    ) {
       return [];
     }
-    const bus = programBus.busCompany[0];
-    return bus.seat.map((seat) => seat.name_passenger);
+    // const bus = programBus.busCompany[0];
+    return programBus.seat.map((seat) => seat.name_passenger);
   }
 //////////////////////////////////
 async getAvailableSeatsByProgramCompanyAndBus( id_ProgramUmrah: string, name_company: string, number_bus: number,
@@ -150,12 +152,14 @@ async getAvailableSeatsByProgramCompanyAndBus( id_ProgramUmrah: string, name_com
     })
     .exec();
 
-  if (!programBus || !programBus.busCompany.length) {
+  if (!programBus 
+    // || !programBus.length
+  ) {
     return [];
   }
 
-  const bus = programBus.busCompany[0];
-  const availableSeats = bus.seat.filter((seat) => !seat.isReserved);
+
+  const availableSeats = programBus.seat.filter((seat) => !seat.isReserved);
   return availableSeats.map((seat) => seat.seatNumber);
 }
 /////////////////////////////////

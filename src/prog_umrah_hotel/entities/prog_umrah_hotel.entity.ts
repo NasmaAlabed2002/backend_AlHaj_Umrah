@@ -18,4 +18,4 @@ export class ProgUmrahHotel {
         { type: SchemaTypes.ObjectId, ref: 'HotelRoom' }
     ) id_HotelRoom: HotelRoom;
 }
-export const ProgUmrahHotelchema = SchemaFactory.createForClass(ProgUmrahHotel);
+export const ProgUmrahHotelchema = SchemaFactory.createForClass(ProgUmrahHotel); 

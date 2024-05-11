@@ -6,12 +6,9 @@ import { Type } from "class-transformer";
 export class CreateProgramBusDto {
     @IsString()
     id_ProgramUmrah: string;
-
-    @IsArray() 
-    @ValidateNested({ each: true })
-    @Type(() => BusCompanyDto)
-    busCompany: BusCompanyDto[];
     
+    @IsString()
+    id_busCompany: string;
     
 }
 
