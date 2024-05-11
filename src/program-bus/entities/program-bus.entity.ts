@@ -3,6 +3,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { SchemaType, Document, SchemaTypes } from 'mongoose';
 import { ProgramUmrah } from 'src/program_umrah/entities/program_umrah.entity';
 import { busCompanySchema, busCompany } from './bus-company.schema';
+import {Seat, SeatSchema } from './seat.schema';
 
 export type ProgramBusDocument = ProgramBus & Document;
 @Schema({ versionKey: false })
@@ -19,11 +20,12 @@ export class ProgramBus extends Document {
   ) id_busCompany: busCompany;
 
   
-    seat: [{
+  @Prop({ type :[SeatSchema]}) 
+  seat: [{
     number_bus: number;
-    seatNumber: Number;
-    name_passenger: String;
-    isReserved: boolean;
+    seatNumber: Number,
+    name_passenger: String,
+    isReserved: boolean
   }]
 
 
