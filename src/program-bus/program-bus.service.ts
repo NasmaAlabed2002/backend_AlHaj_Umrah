@@ -86,14 +86,14 @@ export class ProgramBusService {
   }
 
   async  reserveSeat(
-    id_ProgramUmrah: string,
+    id: string,
     name_company: string,
     number_bus: number,
     seatNumber: number,
     name_passenger: string
   ) {
     try {
-      const programBus = await this.ProgramBusModel.findOne({ id_ProgramUmrah });
+      const programBus = await this.ProgramBusModel.findOne({ id});
   
       if (!programBus) {
         throw new Error('ProgramBus not found');
