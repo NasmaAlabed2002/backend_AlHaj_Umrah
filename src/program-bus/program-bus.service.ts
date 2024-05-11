@@ -119,17 +119,26 @@ export class ProgramBusService {
   
       if (seat.isReserved) {
         throw new Error('Seat is already reserved');
-      }
+      }else {
+                  await this.ProgramBusModel.updateMany(
+                      { id,'programBus.seat.number_bus': number_bus, 'programBus.seat.seatNumber': seatNumber},
+                      { $set: { 'programBus.$[programBus].seat.$[seat].isReserved': true , 'programBus.$[programBus].seat.$[seat].name_passenger': name_passenger } },
+                      { arrayFilters: [ { 'seat.number_bus': number_bus , 'seat.seatNumber': seatNumber}] }
+                  );
+              }
+            }catch (error) {
+                console.error('Error reserving seat:', error.message);
+              }
   
-      seat.isReserved = true;
-      seat.name_passenger = name_passenger;
+    //   seat.isReserved = true;
+    //   seat.name_passenger = name_passenger;
   
-      await programBus.save();
+    //   await programBus.save();
   
-      console.log('Seat reserved successfully');
-    } catch (error) {
-      console.error('Error reserving seat:', error.message);
-    }
+    //   console.log('Seat reserved successfully');
+    // } catch (error) {
+    //   console.error('Error reserving seat:', error.message);
+    // }
   }
   // async reserveSeat(id: string, name_company: string, number_bus: number, seatNumber: number , name_passenger: string): Promise<void> {
   //   const bus = await this.ProgramBusModel.findOne({id});
@@ -156,7 +165,7 @@ export class ProgramBusService {
   //   // );
   // }
 
-
+  
   async getUmrahProgramName(programBusId: string): Promise<string> {
     const programBus = await this.ProgramBusModel
       .findById(programBusId)
@@ -261,6 +270,6 @@ await this.ProgramBusModel.updateMany(
 // }
 }
 
- 
+
   
   
