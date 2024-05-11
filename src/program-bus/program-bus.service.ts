@@ -74,30 +74,58 @@ export class ProgramBusService {
   async remove(id: string) {
    await this.ProgramBusModel.findByIdAndDelete(id);
   }
-  async reserveSeat(id: string, name_company: string, number_bus: number, seatNumber: number , name_passenger: string): Promise<void> {
-    const bus = await this.ProgramBusModel.findOne({id});
-    if (bus) {
-        const seat = bus.seat.find(
-          seat => seat.number_bus === number_bus && seat.seatNumber === seatNumber);
-
-        if (seat && seat.isReserved) {
-            throw new Error('Seat is already reserved');
-        } else {
-            await this.ProgramBusModel.updateMany(
-                { id, 'busCompany.name_company': name_company, 'busCompany.seat.number_bus': number_bus, 'busCompany.seat.seatNumber': seatNumber},
-                { $set: { 'busCompany.$[busCompany].seat.$[seat].isReserved': true , 'busCompany.$[busCompany].seat.$[seat].name_passenger': name_passenger } },
-                { arrayFilters: [{ 'busCompany.name_company': name_company }, { 'seat.number_bus': number_bus , 'seat.seatNumber': seatNumber}] }
-            );
-        }
-    } else {
-        throw new Error('Bus or seat not found');
+  async  reserveSeat(
+    id_ProgramUmrah: string,
+    name_company: string,
+    number_bus: number,
+    seatNumber: number,
+    name_passenger: string
+  ) {
+    try {
+      const programBus = await this.ProgramBusModel.findOne({ id_ProgramUmrah });
+  
+      if (!programBus) {
+        throw new Error('ProgramBus not found');
+      }
+  
+      const busCompany = await this.busCompanyModel.findOne({ name_company });
+  
+      if (!busCompany) {
+        throw new Error('Bus company not found');
+      }
+  
+      if (programBus.id_busCompany.toString() !== busCompany._id.toString()) {
+        throw new Error('Invalid bus company for the given program');
+      }
+  
+      const seat = programBus.seat.find(
+        (s) => s.number_bus === number_bus && s.seatNumber === seatNumber
+      );
+  
+      if (!seat) {
+        throw new Error('Seat not found');
+      }
+  
+      if (seat.isReserved) {
+        throw new Error('Seat is already reserved');
+      }
+  
+      seat.isReserved = true;
+      seat.name_passenger = name_passenger;
+  
+      await programBus.save();
+  
+      console.log('Seat reserved successfully');
+    } catch (error) {
+      console.error('Error reserving seat:', error.message);
     }
+  }
     // await this.ProgramBusModel.updateMany(
     //   { id, 'busCompany.name_company': name_company, 'busCompany.seat.number_bus': number_bus, 'busCompany.seat.seatNumber': seatNumber},
     //   { $set: { 'busCompany.$[busCompany].seat.$[seat].isReserved': true ,  'busCompany.$[busCompany].seat.$[seat].name_passenger': name_passenger } },
     //   { arrayFilters: [{ 'busCompany.name_company': name_company  }, { 'seat.number_bus': number_bus , 'seat.seatNumber': seatNumber}] }
     // );
-  }
+  
 
 
   async getUmrahProgramName(programBusId: string): Promise<string> {
