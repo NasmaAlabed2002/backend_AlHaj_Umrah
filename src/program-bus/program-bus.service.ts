@@ -74,39 +74,37 @@ export class ProgramBusService {
     name_passenger: string ): Promise<void> {
     try {
       // Find the busCompany document based on name_company
-      const busCompany = await this.busCompanyModel.findOne({ name_company }).exec();
+      const busCompany = await this.busCompanyModel.findOne({ name_company });
+
       if (!busCompany) {
-        throw new Error('BusCompany not found');
+        throw new Error('Bus company not found');
+      }
+  
+      // Assuming you have the `ProgramBus` model for the collection
+      const programBus = await this.ProgramBusModel.findOne({ id_ProgramUmrah });
+  
+      if (!programBus) {
+        throw new Error('ProgramBus not found');
       }
       
-      // Check if the seat is already reserved
-      const seatReserved = await this.ProgramBusModel.exists({
-        id_ProgramUmrah,
-        'seat.number_bus': number_bus,
-        'seat.seatNumber': seatNumber,
-        'seat.isReserved': true
-      });
-      if (seatReserved) {
-        throw new Error('Seat is already reserved');
-      }
-      
-      // Reserve the seat and save the name of the passenger
-      await this.ProgramBusModel.updateMany(
-        {
-          id_ProgramUmrah,
-          'seat.number_bus': number_bus,
-          'seat.seatNumber': seatNumber
-        },
-        {
-          $set: {
-            'seat.$.isReserved': true,
-            'seat.$.name_passenger': name_passenger
-          }
-        }
+      const seat = programBus.seat.find(
+        (s) => s.number_bus === number_bus && s.seatNumber === seatNumber
       );
+  
+      if (!seat) {
+        throw new Error('Seat not found');
+      }
+  
+      // Update the seat details
+      seat.isReserved = true;
+      seat.name_passenger = name_passenger;
+  
+      // Save the updated programBus document
+      await programBus.save();
+  
+      console.log('Seat reserved successfully');
     } catch (error) {
-      console.error('Error reserving seat:', error);
-      throw error;
+      console.error('Error reserving seat:', error.message);
     }
   }
   // async reserveSeat(id: string, name_company: string, number_bus: number, seatNumber: number , name_passenger: string): Promise<void> {
