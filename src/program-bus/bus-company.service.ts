@@ -28,4 +28,19 @@ export class BusCompanyService {
   async removeBusCompanie(id: string) {
     await this.busCompanyModel.findByIdAndDelete(id);
    }
+
+   async  getCompanyIdByName(name_company: string): Promise<string> {
+    try {
+      const busCompany = await this.busCompanyModel.findOne({ name_company });
+  
+      if (!busCompany) {
+        throw new Error('Bus company not found');
+      }
+  
+      return  busCompany._id ;
+    } catch (error) {
+      console.error('Error retrieving company ID:', error.message);
+      throw error;
+    }
+  }
 }

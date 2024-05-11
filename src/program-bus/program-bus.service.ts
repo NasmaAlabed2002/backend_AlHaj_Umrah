@@ -70,23 +70,45 @@ export class ProgramBusService {
   async remove(id: string) {
    await this.ProgramBusModel.findByIdAndDelete(id);
   }
-  async  reserveSeat(id_ProgramUmrah: string,name_company: string,  number_bus: number,   seatNumber: number,
-    name_passenger: string ): Promise<void> {
+  async  getCompanyIdByName(name_company: string): Promise<string> {
     try {
-      // Find the busCompany document based on name_company
       const busCompany = await this.busCompanyModel.findOne({ name_company });
-
+  
       if (!busCompany) {
         throw new Error('Bus company not found');
       }
   
-      // Assuming you have the `ProgramBus` model for the collection
+      return  busCompany._id ;
+    } catch (error) {
+      console.error('Error retrieving company ID:', error.message);
+      throw error;
+    }
+  }
+
+  async  reserveSeat(
+    id_ProgramUmrah: string,
+    name_company: string,
+    number_bus: number,
+    seatNumber: number,
+    name_passenger: string
+  ) {
+    try {
       const programBus = await this.ProgramBusModel.findOne({ id_ProgramUmrah });
   
       if (!programBus) {
         throw new Error('ProgramBus not found');
       }
-      
+  
+      const busCompany = await this.busCompanyModel.findOne({ name_company });
+  
+      if (!busCompany) {
+        throw new Error('Bus company not found');
+      }
+  
+      if (programBus.id_busCompany.toString() !== busCompany._id.toString()) {
+        throw new Error('Invalid bus company for the given program');
+      }
+  
       const seat = programBus.seat.find(
         (s) => s.number_bus === number_bus && s.seatNumber === seatNumber
       );
@@ -95,11 +117,13 @@ export class ProgramBusService {
         throw new Error('Seat not found');
       }
   
-      // Update the seat details
+      if (seat.isReserved) {
+        throw new Error('Seat is already reserved');
+      }
+  
       seat.isReserved = true;
       seat.name_passenger = name_passenger;
   
-      // Save the updated programBus document
       await programBus.save();
   
       console.log('Seat reserved successfully');

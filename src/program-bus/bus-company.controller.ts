@@ -44,6 +44,11 @@ export class BusCompanyController {
     async getAllBusCompanies(): Promise<busCompany[]> {
       return this.busCompanyService.findAllBusCompanies();
     }
+    @Get('company/:name')
+    async getCompanyIdByName(@Param('name') name: string): Promise<string> {
+      const companyId = await this.busCompanyService.getCompanyIdByName(name);
+      return companyId;
+    }
     @Patch(':id')
     @ApiOperation({ summary: 'update BusCompany' })
     updateBusCompanie(@Param('id') id: string, @Body() udateBusCompanyDto: UpdateBusCompanyDto) {
