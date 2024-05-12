@@ -22,6 +22,10 @@ export class BusCompanyService {
   async findAllBusCompanies(): Promise<busCompany[]> {
     return await this.busCompanyModel.find();
   }
+  
+  async findOne(id: string) {
+    return await this.busCompanyModel.findOne({_id:id})
+  }
   async updateBusCompanie(id: string, updateBusCompanyDto: UpdateBusCompanyDto) {
     await this.busCompanyModel.findByIdAndUpdate (id ,updateBusCompanyDto , {new : true});
   }

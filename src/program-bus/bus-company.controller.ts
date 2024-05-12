@@ -5,10 +5,10 @@ import { ApiOperation, ApiResponse, ApiBody, ApiConsumes,  ApiTags } from '@nest
 import { FileInterceptor } from '@nestjs/platform-express';
 import { busCompany } from './entities/bus-company.schema';
 
-@Controller('BusCompany')
+@Controller ('BusCompany')
 export class BusCompanyController {
     constructor(private readonly busCompanyService: BusCompanyService) {}
-    @Post('buscompany')
+    @Post()
     create(@Body() busCompanyDto: BusCompanyDto) {
         return this.busCompanyService.createBusCompany(busCompanyDto);
       }
@@ -38,13 +38,17 @@ export class BusCompanyController {
     //   const { name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket } = busCompanyDto;
     //   return this.busCompanyService.createBusCompany(name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket);
     // }
-    @Get('allBusCompany')
+    @Get()
     // @ApiOperation({ summary: 'Get all BusCompany'})
     @ApiResponse({ status: 200, description: 'OK'})
     async getAllBusCompanies(): Promise<busCompany[]> {
       return this.busCompanyService.findAllBusCompanies();
     }
-    @Get('company/:name')
+    @Get(':id')
+    findOne(@Param('id') id: string) {
+      return this.busCompanyService.findOne(id);
+    }
+    @Get(':name')
     async getCompanyIdByName(@Param('name') name: string): Promise<string> {
       const companyId = await this.busCompanyService.getCompanyIdByName(name);
       return companyId;
