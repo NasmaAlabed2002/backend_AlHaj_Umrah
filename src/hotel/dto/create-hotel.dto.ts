@@ -8,7 +8,7 @@ export class CreateHotelDto {
     name : string;
 
     @ApiProperty() 
-    @IsNumber()
+    // @IsNumber()
     Number_stars:number;
 
     @ApiProperty()
@@ -20,25 +20,25 @@ export class CreateHotelDto {
     details : string;
 
     @ApiProperty()
-    @IsUrl()
+    // @IsUrl()
     urlImagehotel:URL;
 
     @ApiProperty()
-    @IsArray()
+    // @IsArray()
     urlImage:Array<string>;
 
     
     @ApiProperty()
     // @IsString()
-    @IsArray()
+    // @IsArray()
     Services:Array<string>;
 
        
     @ApiProperty()
-    @IsArray()
+    // @IsArray()
     Places_available_visit:Array<string>;
 
     @ApiProperty()
-    @IsUrl()
+    // @IsUrl()
     link: URL;
 }
