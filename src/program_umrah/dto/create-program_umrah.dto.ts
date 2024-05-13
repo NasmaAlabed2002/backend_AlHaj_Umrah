@@ -14,15 +14,15 @@ export class CreateProgramUmrahDto {
     Date_Travel_Hijri :Date;
 
     @ApiProperty()
-    @IsNumber()
+    // @IsNumber()
     total_stay:Number;
 
     @ApiProperty()
-    @IsNumber()
+    // @IsNumber()
     stay_in_macca:Number;
 
     @ApiProperty()
-     @IsNumber()
+    //  @IsNumber()
     stay_in_madina:Number;
 
     @ApiProperty()
