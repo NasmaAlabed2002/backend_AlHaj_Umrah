@@ -8,28 +8,35 @@ export class CreateProgramUmrahDto {
     name_program:string;
 
     @ApiProperty()
-    // @IsString()
-    type_programUmrah:string;
+    Date_Travel: Date;
 
     @ApiProperty()
-    Date_Travel:Date;
+    Date_Travel_Hijri :Date;
 
     @ApiProperty()
-    // @IsNumber()
+    @IsNumber()
     total_stay:Number;
 
     @ApiProperty()
-    // @IsNumber()
+    @IsNumber()
     stay_in_macca:Number;
 
     @ApiProperty()
-    // @IsNumber()
+     @IsNumber()
     stay_in_madina:Number;
 
-    
     @ApiProperty()
     image:URL;
- 
+    
+    @ApiProperty()
+    price1: string;
+    @ApiProperty()
+    price2: string;
+    @ApiProperty()
+    price3: string;
+    @ApiProperty()
+    price4: string;
+
 
 
 }

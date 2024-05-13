@@ -9,14 +9,12 @@ export class ProgramUmrah {
   @Prop(
     { type: SchemaTypes.ObjectId, ref: 'Office' }
   ) id_Office: Office;
-
-
-
   @Prop()
   name_program: string;
- 
   @Prop()
   Date_Travel: Date;
+  @Prop()
+  Date_Travel_Hijri :Date;
   @Prop()
   total_stay: Number;
   @Prop()
@@ -25,6 +23,15 @@ export class ProgramUmrah {
   stay_in_madina: Number;
   @Prop()
   image:URL;
+  @Prop()
+  price1: String;
+  @Prop()
+  price2: string;
+  @Prop()
+  price3: string;
+  @Prop()
+  price4: string;
+
 }
 
 

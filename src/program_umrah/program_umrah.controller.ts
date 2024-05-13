@@ -19,13 +19,17 @@ export class ProgramUmrahController {
     schema: {
       type: 'object',
       properties: {
-        name_program: { type: 'string' },
-        type_programUmrah: { type: 'string' },
-        Date_Travel: { type: 'date' },
-        total_stay: { type: 'number' },
-        stay_in_macca: { type: 'number' },
-        stay_in_madina: { type: 'number' },
+        name_program: { type: 'String' },
+        Date_Travel: { type: 'Date' },
+        Date_Travel_Hijri :{ type: 'Date' },
+        total_stay: { type: 'Number' },
+        stay_in_macca: { type: 'Number' },
+        stay_in_madina: { type: 'Number' },
         image:{ type: 'URL' },
+        price1: { type: 'String' },
+        price2: { type: 'String' },
+        price3:{ type: 'String' },
+        price4: { type: 'String' },
       },
     },
   })
@@ -34,8 +38,8 @@ export class ProgramUmrahController {
 
     @Body() createProgramUmrahDto: CreateProgramUmrahDto,
   ) {
-    const { name_program, type_programUmrah, Date_Travel, total_stay , stay_in_macca, stay_in_madina } = createProgramUmrahDto;
-    return this.programUmrahService.create( name_program, type_programUmrah, Date_Travel, total_stay , stay_in_macca, stay_in_madina);
+    const { name_program,  Date_Travel,  Date_Travel_Hijri, total_stay , stay_in_macca, stay_in_madina ,image , price1, price2, price3, price4} = createProgramUmrahDto;
+    return this.programUmrahService.create( name_program,  Date_Travel,  Date_Travel_Hijri, total_stay , stay_in_macca, stay_in_madina , image , price1, price2 , price3, price4);
   }
 
   @Get()
