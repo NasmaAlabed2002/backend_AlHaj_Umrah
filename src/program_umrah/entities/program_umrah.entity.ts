@@ -22,8 +22,9 @@ export class ProgramUmrah {
   @Prop()
   stay_in_macca: Number;
   @Prop()
-  stay_in_madina: Number
-
+  stay_in_madina: Number;
+  @Prop()
+  image:URL;
 }
 
 

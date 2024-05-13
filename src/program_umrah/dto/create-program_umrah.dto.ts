@@ -24,6 +24,12 @@ export class CreateProgramUmrahDto {
 
     @ApiProperty()
     // @IsNumber()
-    stay_in_madina:Number
+    stay_in_madina:Number;
+
+    
+    @ApiProperty()
+    image:URL;
+ 
+
 
 }

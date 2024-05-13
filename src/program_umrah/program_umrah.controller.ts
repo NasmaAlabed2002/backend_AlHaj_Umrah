@@ -19,13 +19,13 @@ export class ProgramUmrahController {
     schema: {
       type: 'object',
       properties: {
-
         name_program: { type: 'string' },
         type_programUmrah: { type: 'string' },
         Date_Travel: { type: 'date' },
         total_stay: { type: 'number' },
         stay_in_macca: { type: 'number' },
         stay_in_madina: { type: 'number' },
+        image:{ type: 'URL' },
       },
     },
   })
