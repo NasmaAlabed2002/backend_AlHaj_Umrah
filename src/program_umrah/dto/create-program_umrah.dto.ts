@@ -11,7 +11,7 @@ export class CreateProgramUmrahDto {
     Date_Travel: Date;
 
     @ApiProperty()
-    Date_Travel_Hijri :Date;
+    Date_Travel_Hijri :string;
 
     @ApiProperty()
     @IsNumber()

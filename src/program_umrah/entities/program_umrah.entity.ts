@@ -14,7 +14,7 @@ export class ProgramUmrah {
   @Prop()
   Date_Travel: Date;
   @Prop()
-  Date_Travel_Hijri :Date;
+  Date_Travel_Hijri :string;
   @Prop()
   total_stay: Number;
   @Prop()
