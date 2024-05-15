@@ -21,7 +21,7 @@ export class AlMutamirController {
   findOne(@Param('id') id: string) {
     return this.alMutamirService.findOne(id);
   }
-  @Get(':number/room and name hotel')
+  @Get(':number')
   async getRoomByNumber(@Param('number') number: number): Promise<any> {
     const roomWithHotel = await this.alMutamirService.getRoomByNumber ( number);
     return roomWithHotel;
