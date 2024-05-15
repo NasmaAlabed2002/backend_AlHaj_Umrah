@@ -21,6 +21,11 @@ export class AlMutamirController {
   findOne(@Param('id') id: string) {
     return this.alMutamirService.findOne(id);
   }
+  @Get(':number/room and name hotel')
+  async getRoomByNumber(@Param('number') number: number): Promise<any> {
+    const roomWithHotel = await this.alMutamirService.getRoomByNumber ( number);
+    return roomWithHotel;
+  }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAlMutamirDto: UpdateAlMutamirDto) {
