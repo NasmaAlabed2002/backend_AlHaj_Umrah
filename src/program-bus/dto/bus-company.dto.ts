@@ -40,9 +40,9 @@ export class BusCompanyDto {
  
   // @ApiProperty()
   // @IsArray()
-  @ValidateNested({ each: true })
-  @Type(() => SeatDto)
-  seat: SeatDto[];
+  // @ValidateNested({ each: true })
+  // @Type(() => SeatDto)
+  // seat: SeatDto[];
  }
 
  export class UpdateBusCompanyDto extends PartialType(BusCompanyDto) {}

@@ -31,7 +31,10 @@ export class HotelRoomController {
   findOne(@Param('id') id: string) {
     return this.hotelRoomService.findOne(id);
   }
-
+  @Get(':id/first-room')
+  async getFirstRoom(@Param('id') id: string) {
+    return this.hotelRoomService.getFirstRoom(id);
+  }
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateHotelRoomDto: UpdateHotelRoomDto) {
     return this.hotelRoomService.update(id, updateHotelRoomDto);

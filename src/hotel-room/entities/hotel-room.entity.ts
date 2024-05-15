@@ -15,8 +15,10 @@ export class HotelRoom extends Document {
  ) id_hotel : Hotel;
 
  @Prop({ type :[roomSchema]}) 
- room:Array<Document>;
-
+//  room:Array<Document>;
+room : [{ 
+  type_room:string,
+  price:Number}]
 }
 
 export const HotelRoomchema=SchemaFactory.createForClass(HotelRoom);

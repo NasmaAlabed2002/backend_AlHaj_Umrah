@@ -28,4 +28,12 @@ export class HotelRoomService {
   async remove(id: string) {
     await this.HotelRoomModel.findByIdAndDelete(id);
   }
+  async getFirstRoom(id: string): Promise<any> {
+    const hotel = await this.HotelRoomModel.findById(id).lean().exec();
+    if (!hotel) {
+      throw new Error('Hotel not found');
+    }
+    const firstRoom = hotel.room[0];
+    return firstRoom;
+  }
 }
