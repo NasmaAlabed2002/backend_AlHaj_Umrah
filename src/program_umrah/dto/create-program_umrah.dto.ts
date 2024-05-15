@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsNumber, IsString } from 'class-validator';
+import { Double } from "mongodb";
 import { isNativeError } from "util/types";
 
 export class CreateProgramUmrahDto {
@@ -36,7 +37,8 @@ export class CreateProgramUmrahDto {
     price3: string;
     @ApiProperty()
     price4: string;
-
+    @ApiProperty()
+    Airline : {name:string, price_tecket:Double }
 
 
 }
