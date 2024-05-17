@@ -141,7 +141,7 @@ async getAvailableSeatsByProgramCompanyAndBus( id_ProgramUmrah: string,  number_
 
 async cancelReservationByPassengerName(id: string,number_bus: number,name_passenger: string): Promise<void> {
 await this.ProgramBusModel.updateMany(
-  { id,  'seat.number_bus': number_bus , 'busCompany.seat.name_passenger': name_passenger},
+  { id,  'seat.number_bus': number_bus , 'seat.name_passenger': name_passenger},
   { $set: {  'seat.$[seat].name_passenger': null } },
   { arrayFilters: [  { 'seat.number_bus': number_bus , 'seat.name_passenger': name_passenger }] }
 );
