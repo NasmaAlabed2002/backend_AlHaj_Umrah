@@ -14,10 +14,10 @@ export class ProgramBus extends Document {
     { type: SchemaTypes.ObjectId, ref: 'ProgramUmrah' }
   ) id_ProgramUmrah: ProgramUmrah;
 
-  @ApiProperty({ example: 1, description: 'id busCompany' })
-  @Prop(
-    { type: SchemaTypes.ObjectId, ref: 'busCompany' }
-  ) id_busCompany: busCompany;
+  // @ApiProperty({ example: 1, description: 'id busCompany' })
+  // @Prop(
+  //   { type: SchemaTypes.ObjectId, ref: 'busCompany' }
+  // ) id_busCompany: busCompany;
 
   
   @Prop({ type :[SeatSchema]}) 
