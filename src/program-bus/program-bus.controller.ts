@@ -42,7 +42,7 @@ export class ProgramBusController {
   findOne(@Param('id') id: string) {
     return this.programBusService.findOne(id);
   }
-  @Get(':id_ProgramUmrah/:name_company/:number_bus/passengers')
+  @Get(':id_ProgramUmrah/:number_bus/passengers')
   async getPassengersByBus(
     @Param('id_ProgramUmrah') id_ProgramUmrah: string,
     //  @Param('name_company') name_company: string, 
@@ -51,7 +51,7 @@ export class ProgramBusController {
       // name_company,
        number_bus);
   }
-  @Get(':id_ProgramUmrah/:name_company/:number_bus/available-seats')
+  @Get(':id_ProgramUmrah/:number_bus/available-seats')
   async getAvailableSeats(
    @Param('id_ProgramUmrah') id_ProgramUmrah: string,
   //  @Param('name_company') name_company: string, 
@@ -68,7 +68,7 @@ export class ProgramBusController {
   update(@Param('id') id: string, @Body() updateProgramBusDto: UpdateProgramBusDto) {
     return this.programBusService.update(id, updateProgramBusDto);
   }
-  @Patch(':id/reserve-seat/:name_company/:number_bus/:seatNumber/:name_passenger')
+  @Patch(':id/reserve-seat/:number_bus/:seatNumber/:name_passenger')
   async reserveSeat(
     @Param('id_ProgramUmrah') id_ProgramUmrah: string,
     // @Param('name_company') name_company: string,
@@ -81,7 +81,7 @@ export class ProgramBusController {
       //  name_company,
         number_bus, seatNumber , name_passenger);
   }
-  @Patch(':id/cancel-reservation/:name_company/:number_bus/:name_passenger')
+  @Patch(':id/cancel-reservation/:number_bus/:name_passenger')
   async cancelReservationByPassengerName(
     @Param('id_ProgramUmrah') id: string,
     // @Param('name_company') name_company: string,
