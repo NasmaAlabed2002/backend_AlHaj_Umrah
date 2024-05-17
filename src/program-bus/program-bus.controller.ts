@@ -68,7 +68,7 @@ export class ProgramBusController {
   update(@Param('id') id: string, @Body() updateProgramBusDto: UpdateProgramBusDto) {
     return this.programBusService.update(id, updateProgramBusDto);
   }
-  @Patch(':id/reserve-seat/:number_bus/:seatNumber/:name_passenger')
+  @Patch(':id_ProgramUmrah/reserve-seat/:number_bus/:seatNumber/:name_passenger')
   async reserveSeat(
     @Param('id_ProgramUmrah') id_ProgramUmrah: string,
     // @Param('name_company') name_company: string,
@@ -81,14 +81,14 @@ export class ProgramBusController {
       //  name_company,
         number_bus, seatNumber , name_passenger);
   }
-  @Patch(':id/cancel-reservation/:number_bus/:name_passenger')
+  @Patch(':id_ProgramUmrah/cancel-reservation/:number_bus/:name_passenger')
   async cancelReservationByPassengerName(
-    @Param('id_ProgramUmrah') id: string,
+    @Param('id_ProgramUmrah') id_ProgramUmrah: string,
     // @Param('name_company') name_company: string,
     @Param('number_bus') number_bus: number,
     @Param('name_passenger') name_passenger: string,
   ) {
-    await this.programBusService.cancelReservationByPassengerName(id,
+    await this.programBusService.cancelReservationByPassengerName(id_ProgramUmrah,
       //  name_company,
        number_bus, name_passenger);
   }
