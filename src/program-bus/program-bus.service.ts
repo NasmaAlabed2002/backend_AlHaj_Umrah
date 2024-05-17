@@ -75,10 +75,10 @@ export class ProgramBusService {
    await this.ProgramBusModel.findByIdAndDelete(id);
   }
   async  reserveSeat(
-    id_ProgramUmrah: string, number_bus: number, seatNumber: number,name_passenger: string  )
+    id: string, number_bus: number, seatNumber: number,name_passenger: string  )
     {
     await this.ProgramBusModel.updateMany(
-      { id_ProgramUmrah, 'busCompany.seat.number_bus': number_bus, 'busCompany.seat.seatNumber': seatNumber},
+      { id, 'busCompany.seat.number_bus': number_bus, 'busCompany.seat.seatNumber': seatNumber},
       { $set: { 'busCompany.$[busCompany].seat.$[seat].isReserved': true ,  'busCompany.$[busCompany].seat.$[seat].name_passenger': name_passenger } },
       { arrayFilters: [ { 'seat.number_bus': number_bus , 'seat.seatNumber': seatNumber}] }
     );
@@ -139,9 +139,9 @@ async getAvailableSeatsByProgramCompanyAndBus( id_ProgramUmrah: string,  number_
 }
 /////////////////////////////////
 
-async cancelReservationByPassengerName(id_ProgramUmrah: string,number_bus: number,name_passenger: string): Promise<void> {
+async cancelReservationByPassengerName(id: string,number_bus: number,name_passenger: string): Promise<void> {
 await this.ProgramBusModel.updateMany(
-  { id_ProgramUmrah,  'busCompany.seat.number_bus': number_bus , 'busCompany.seat.name_passenger': name_passenger},
+  { id,  'busCompany.seat.number_bus': number_bus , 'busCompany.seat.name_passenger': name_passenger},
   { $set: {  'busCompany.$[busCompany].seat.$[seat].name_passenger': null } },
   { arrayFilters: [  { 'seat.number_bus': number_bus , 'seat.name_passenger': name_passenger }] }
 );
