@@ -17,25 +17,25 @@ export class CloudinaryController {
     // }
 
 
-  //   @Post('/image')
-  //   // @UseInterceptors(FileInterceptor('image'))
-  //   @ApiConsumes('multipart/form-data')
-  //   @ApiBody({
-  //     schema: {
-  //       type: 'object',
-  //       properties: {
-  //         file:{
-  //           type: 'string', format: 'binary',
-  //       },
-  //       },
-  //     },
-  // })
-  // async uploadImage(@Req() req):Promise<any>
-  // {
-  //   const data = await req.file();
-  //   const url = await this.cloudinaryService.uploadImage(data.path) as any;
-  //   const trimUrl = url.substring(48);
-  //   return('https://res.cloudinary.com/dj05jeavk/image/upload/v1713110570/' + trimUrl)
-  // }
+    @Post('/image')
+    // @UseInterceptors(FileInterceptor('image'))
+    @ApiConsumes('multipart/form-data')
+    @ApiBody({
+      schema: {
+        type: 'object',
+        properties: {
+          file:{
+            type: 'string', format: 'binary',
+        },
+        },
+      },
+  })
+  async uploadImage(@Req() req):Promise<any>
+  {
+    const data = await req.file();
+    const url = await this.cloudinaryService.uploadImage(data.file) as any;
+    const trimUrl = url.substring(48);
+    return('https://res.cloudinary.com/alhajandumrah/image/upload/q_10/' + trimUrl)
+  }
 
 }
