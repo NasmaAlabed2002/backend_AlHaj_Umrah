@@ -6,6 +6,8 @@ import { Model } from 'mongoose'
 import { AlMutamir } from './entities/al_mutamir.entity';
 import { ProgUmrahHotel } from 'src/prog_umrah_hotel/entities/prog_umrah_hotel.entity';
 import { HotelRoom } from 'src/hotel-room/entities/hotel-room.entity'; 
+import { IsPassportNumber } from 'class-validator';
+import { URL } from 'url';
 @Injectable()
 export class AlMutamirService {
   constructor(@InjectModel( AlMutamir.name) private  AlMutamirModel: Model< AlMutamir>) {}  
@@ -52,5 +54,18 @@ export class AlMutamirService {
       console.error('Error retrieving room:', error.message);
       throw error;
     }
+  }
+  async updateMuammarWithImageUrl(id: string, imageUrl) {
+    const updatedMuammar = await this.AlMutamirModel.findByIdAndUpdate(
+      id,
+      { url: imageUrl },
+      { new: true },
+    );
+    return updatedMuammar;
+  }
+  async uploadPhotoAndUpdateMuammar(file: Express.Multer.File, id: string){
+
+    const updatedMuammar = await this.updateMuammarWithImageUrl(id, URL);
+    return updatedMuammar;
   }
 }
