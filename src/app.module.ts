@@ -16,7 +16,7 @@ import { ProgHajAirlineModule } from './prog_haj_airline/prog_haj_airline.module
 import { ProgUmrahHotelModule } from './prog_umrah_hotel/prog_umrah_hotel.module';
 import { ProgAlHajHotelModule } from './prog_al-haj_hotel/prog_al-haj_hotel.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
-import { CloudinaryProvider } from './cloudinary/cloudinary';
+import { CloudinaryProvider } from './cloudinary/cloudinary.config';
 import { ProgramUmrahSpecialModule } from './program_umrah_special/program_umrah_special.module';
 import { BusCompanyModule } from './program-bus/bus-company.module';
 

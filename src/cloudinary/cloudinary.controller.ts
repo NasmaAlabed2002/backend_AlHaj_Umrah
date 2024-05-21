@@ -9,33 +9,26 @@ import { CloudinaryService } from './clodinary.service';
 export class CloudinaryController {
     constructor(private readonly cloudinaryService: CloudinaryService) { }
 
-    // @Post('upload')
+
+    @Post('/image')
     // @UseInterceptors(FileInterceptor('image'))
-    // async uploadImage(@UploadedFile() file) {
-    //   const imageUrl = await this.cloudinaryService.uploadImage(file);
-    //   return { imageUrl };
-    // }
-
-
-  //   @Post('/image')
-  //   // @UseInterceptors(FileInterceptor('image'))
-  //   @ApiConsumes('multipart/form-data')
-  //   @ApiBody({
-  //     schema: {
-  //       type: 'object',
-  //       properties: {
-  //         file:{
-  //           type: 'string', format: 'binary',
-  //       },
-  //       },
-  //     },
-  // })
-  // async uploadImage(@Req() req):Promise<any>
-  // {
-  //   const data = await req.file();
-  //   const url = await this.cloudinaryService.uploadImage(data.file) as any;
-  //   const trimUrl = url.substring(48);
-  //   return('https://res.cloudinary.com/alhajandumrah/image/upload/q_10/' + trimUrl)
-  // }
+    @ApiConsumes('multipart/form-data')
+    @ApiBody({
+      schema: {
+        type: 'object',
+        properties: {
+          file:{
+            type: 'string', format: 'binary',
+        },
+        },
+      },
+  })
+  async uploadImage(@Req() req):Promise<any>
+  {
+    const data = await req.file();
+    const url = await this.cloudinaryService.uploadImage(data.file) as any;
+    const trimUrl = url.substring(48);
+    return('https://res.cloudinary.com/alhajandumrah/image/upload/q_10/' + trimUrl)
+  }
 
 }
