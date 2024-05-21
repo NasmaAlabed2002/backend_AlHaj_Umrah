@@ -10,17 +10,17 @@ import { Stream } from 'stream';
 
 export class CloudinaryService {
  
-    async uploadImage(file: any) {
-        return new Promise((async(resolve, reject) => {
-            const pipline = util.promisify(Stream.pipeline);
-            const writeStream = v2.uploader.upload_stream( (err, image) => {
-                              if (err) reject(err);
-                              resolve(image.url);
-                            } );
-                            await pipline(file , writeStream)
+    // async uploadImage(file: any) {
+    //     return new Promise((async(resolve, reject) => {
+    //         const pipline = util.promisify(Stream.pipeline);
+    //         const writeStream = v2.uploader.upload_stream( (err, image) => {
+    //                           if (err) reject(err);
+    //                           resolve(image.url);
+    //                         } );
+    //                         await pipline(file , writeStream)
 
-         }))
-    }
+    //      }))
+    // }
 
     // async uploadImage(file: Express.Multer.File) : Promise<CloudinaryResponse> {
     //     return new Promise<CloudinaryResponse> ((resolve, reject) => {
