@@ -10,15 +10,16 @@ export class CreateAlMutamirDto {
 
     @ApiProperty()
     @IsString()
-    @IsNotEmpty()
+    // @IsNotEmpty()
     name_father: string;
 
     @ApiProperty()
     @IsString()
-    @IsNotEmpty()
+    // @IsNotEmpty()
     name_mother: string;
 
     @ApiProperty()
+    @IsNumber()
     phone_number:Number;
 
     @ApiProperty()
@@ -26,22 +27,22 @@ export class CreateAlMutamirDto {
     email: string;
 
     @ApiProperty()
-    @IsNotEmpty()
+    // @IsNotEmpty()
     birth: Date;
 
     @ApiProperty()
     @IsString()
-    @IsNotEmpty()
+    // @IsNotEmpty()
     gender: string;
     
     @ApiProperty()
     @IsString()
-    @IsNotEmpty()
+    // @IsNotEmpty()
     Nationality: string;
 
     @ApiProperty()
     @IsString()
-    @IsNotEmpty()
+    // @IsNotEmpty()
     passport_number: string;
 
     @ApiProperty()
@@ -57,5 +58,6 @@ export class CreateAlMutamirDto {
     seatNumber:Number;
 
     @ApiProperty()
+    @IsString()
     type_room:string
 }
