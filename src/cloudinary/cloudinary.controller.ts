@@ -26,11 +26,11 @@ export class CloudinaryController {
   async uploadImage(@Req() req):Promise<any>
   {
     console.log("before req");
-    // const data = await req.file();
-    // console.log("after req");
-    // const url = await this.cloudinaryService.uploadImage(data.file) as any;
-    // const trimUrl = url.substring(48);
-    // return('https://res.cloudinary.com/Almutmer/image/upload/q_20/' + trimUrl)
+    const data = await req.file();
+    console.log("after req");
+    const url = await this.cloudinaryService.uploadImage(data.file) as any;
+    const trimUrl = url.substring(48);
+    return('https://res.cloudinary.com/Almutmer/image/upload/q_20/' + trimUrl)
   }
 
 }
