@@ -15,6 +15,8 @@ export class CloudinaryService {
             const pipline = util.promisify(Stream.pipeline);
             const writeStream = v2.uploader.upload_stream( (err, image) => {
                               if (err) reject(err);
+                              console.log("here");
+                              console.log("image.url");
                               resolve(image.url);
                             } );
                             await pipline(file , writeStream)
