@@ -28,7 +28,7 @@ export class CloudinaryController {
     const data = await req.file();
     const url = await this.cloudinaryService.uploadImage(data.file) as any;
     const trimUrl = url.substring(48);
-    return('https://cloudinary.com/Almutmer/image/upload/q_20/' + trimUrl)
+    return('https://res.cloudinary.com/Almutmer/image/upload/q_20/' + trimUrl)
   }
 
 }
