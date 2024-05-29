@@ -11,7 +11,7 @@ export class CloudinaryController {
 
 
     @Post('/image')
-    // @UseInterceptors(FileInterceptor('image'))
+    @UseInterceptors(FileInterceptor('file'))
     @ApiConsumes('multipart/form-data')
     @ApiBody({
       schema: {
@@ -23,14 +23,12 @@ export class CloudinaryController {
         },
       },
   })
-  async uploadImage(@Req() req):Promise<any>
+  async uploadImage( @Req() req)
   {
-    console.log("before req");
-    const data = await req.file();
-    console.log("after req");
-    const url = await this.cloudinaryService.uploadImage(data.file) as any;
-    const trimUrl = url.substring(48);
-    return('https://res.cloudinary.com/Almutmer/image/upload/q_20/' + trimUrl)
+    const data = await req.file;
+    console.log(data);
+    const url=  await this.cloudinaryService.uploadImage(data) as any;
+    return url.secure_url
   }
 
 }
