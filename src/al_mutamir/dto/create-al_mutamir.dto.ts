@@ -50,6 +50,10 @@ export class CreateAlMutamirDto {
     passport_photo : Url;
 
     @ApiProperty()
+    @IsUrl()
+    almutamir_photo: Url;
+    
+    @ApiProperty()
     @IsNumber()
     number_bus:Number;
 
@@ -59,5 +63,8 @@ export class CreateAlMutamirDto {
 
     @ApiProperty()
     @IsString()
-    type_room:string
+    type_room:string;
+
+    @ApiProperty()
+    Verification:Boolean;
 }

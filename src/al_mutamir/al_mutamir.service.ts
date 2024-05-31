@@ -6,7 +6,6 @@ import { Model } from 'mongoose'
 import { AlMutamir } from './entities/al_mutamir.entity';
 import { ProgUmrahHotel } from 'src/prog_umrah_hotel/entities/prog_umrah_hotel.entity';
 import { HotelRoom } from 'src/hotel-room/entities/hotel-room.entity'; 
-import { IsPassportNumber } from 'class-validator';
 import { URL } from 'url';
 @Injectable()
 export class AlMutamirService {
@@ -63,9 +62,8 @@ export class AlMutamirService {
     );
     return updatedMuammar;
   }
-  async uploadPhotoAndUpdateMuammar(file: Express.Multer.File, id: string){
-
-    const updatedMuammar = await this.updateMuammarWithImageUrl(id, URL);
-    return updatedMuammar;
+  async saveImage(isurl) {
+    const almutamir = new this.AlMutamirModel({ almutamir_photo: isurl });
+    await almutamir.save();
   }
 }

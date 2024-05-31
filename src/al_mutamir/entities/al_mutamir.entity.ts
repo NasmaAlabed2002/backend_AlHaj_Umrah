@@ -4,6 +4,7 @@ import { HydratedDocument ,SchemaTypes } from 'mongoose';
 import { URL } from 'url';
 import { ProgramBus } from 'src/program-bus/entities/program-bus.entity';
 import { ProgUmrahHotel } from 'src/prog_umrah_hotel/entities/prog_umrah_hotel.entity';
+
 export type AlMutamirDocument = HydratedDocument<AlMutamir>
 @Schema()
 export class AlMutamir {
@@ -36,6 +37,8 @@ export class AlMutamir {
     passport_number: string;
     @Prop()
     passport_photo: URL;
+    @Prop()
+    almutamir_photo: URL;
     @Prop()
     number_bus:Number;
     @Prop()

@@ -1,16 +1,46 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete , UseInterceptors,Req  } from '@nestjs/common';
 import { AlMutamirService } from './al_mutamir.service';
 import { CreateAlMutamirDto } from './dto/create-al_mutamir.dto';
 import { UpdateAlMutamirDto } from './dto/update-al_mutamir.dto';
+import { CloudinaryService } from 'src/cloudinary/clodinary.service';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { ApiBody, ApiConsumes } from '@nestjs/swagger';
 
 @Controller('al-mutamir')
 export class AlMutamirController {
-  constructor(private readonly alMutamirService: AlMutamirService) {}
-
+  constructor(private readonly alMutamirService: AlMutamirService ,  private readonly cloudinaryService: CloudinaryService) {}
   @Post()
   create(@Body() createAlMutamirDto: CreateAlMutamirDto) {
     return this.alMutamirService.create(createAlMutamirDto);
   }
+  @Post('/almutamir_photo')
+  @UseInterceptors(FileInterceptor('file'))
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        file:{
+          type: 'string', format: 'binary',
+      },
+      },
+    },
+})
+async uploadImage( @Req() req)
+// :Promise<string>
+{
+
+  console.log("before req");
+  const data = await req.file;
+  console.log("after req");
+  console.log(data);
+  console.log("after req");
+  console.log(data);
+  const url =  await this.cloudinaryService.uploadImage(data) as any;
+  const secureUrl = url.secure_url;
+  const almutamir = await this.alMutamirService.saveImage(secureUrl)
+  return secureUrl;
+}
 
   @Get()
   findAll() {
