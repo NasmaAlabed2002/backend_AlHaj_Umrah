@@ -23,12 +23,14 @@ export class Employee {
     @Prop()
     mobile:number;
     @Prop()
-    email:string ;
+    email:string;
     @Prop()
     Educational_attainment:string;
     @Prop()
     adress:string;
     @Prop()
     dateEmployee:Date;
+    @Prop()
+    Reservation_code:string;
 }
 export const Employeechema = SchemaFactory.createForClass(Employee);

@@ -35,4 +35,7 @@ export class CreateEmployeeDto {
 
     @ApiProperty()
     dateEmployee:Date;
+
+    @ApiProperty()
+    Reservation_code:string;
 }

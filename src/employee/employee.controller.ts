@@ -13,7 +13,7 @@ export class EmployeeController {
     return this.employeeService.create(createEmployeeDto);
   }
 
-  @Get(':/WithOfficeInfo')
+  @Get('WithOfficeInfo')
   async getEmployeesWithOfficeInfo() {
     return this.employeeService.findEmployeesWithOfficeInfo();
   }
@@ -22,7 +22,7 @@ export class EmployeeController {
   findAll() {
     return this.employeeService.findAll();
   }
-  @Get(':/all employees')
+  @Get('all employees')
   @ApiOperation({ summary: 'Get all employees with office names' })
   @ApiResponse({ status: 200, description: 'OK', type: [Employee] })
   async getAllEmployeesWithOfficeName() {
