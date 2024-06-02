@@ -66,4 +66,9 @@ export class AlMutamirService {
     const almutamir = new this.AlMutamirModel({ almutamir_photo: isurl });
     await almutamir.save();
   }
+
+  async findVerificationNotTrue(): Promise<AlMutamir[]> {
+    const records = await this.AlMutamirModel.find({ Verification: { $ne: true } }).exec();
+    return records;
+  }
 }

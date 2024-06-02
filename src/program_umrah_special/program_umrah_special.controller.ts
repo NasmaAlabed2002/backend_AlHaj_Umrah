@@ -9,34 +9,34 @@ import { FileInterceptor } from '@nestjs/platform-express';
 export class ProgramUmrahSpecialController {
   constructor(private readonly programUmrahSpecialService: ProgramUmrahSpecialService) {}
 
-  // @Post()
-  // create(@Body() createProgramUmrahSpecialDto: CreateProgramUmrahSpecialDto) {
-  //   return this.programUmrahSpecialService.create(createProgramUmrahSpecialDto);
-  // }
   @Post()
-  @UseInterceptors(FileInterceptor('image'))
-  @ApiConsumes('multipart/form-data')
-  @ApiBody({
-    schema: {
-      type: 'object',
-      properties: {
-
-        name_program: { type: 'string' },
-        Date_Travel: { type: 'date' },
-        total_stay: { type: 'number' },
-        stay_in_macca: { type: 'number' },
-        stay_in_madina: { type: 'number' },
-      },
-    },
-  })
-  @ApiResponse({ status: 201, description: 'successfully!' })
-  async createHotel(
-
-    @Body() createProgramUmrahDto: CreateProgramUmrahSpecialDto,
-  ) {
-    const { name_program, Date_Travel, total_stay , stay_in_macca, stay_in_madina } = createProgramUmrahDto;
-    return this.programUmrahSpecialService.create( name_program, Date_Travel, total_stay , stay_in_macca, stay_in_madina);
+  create(@Body() createProgramUmrahSpecialDto: CreateProgramUmrahSpecialDto) {
+    return this.programUmrahSpecialService.create(createProgramUmrahSpecialDto);
   }
+  // @Post()
+  // @UseInterceptors(FileInterceptor('image'))
+  // @ApiConsumes('multipart/form-data')
+  // @ApiBody({
+  //   schema: {
+  //     type: 'object',
+  //     properties: {
+
+  //       name_program: { type: 'string' },
+  //       Date_Travel: { type: 'date' },
+  //       total_stay: { type: 'number' },
+  //       stay_in_macca: { type: 'number' },
+  //       stay_in_madina: { type: 'number' },
+  //     },
+  //   },
+  // })
+  // @ApiResponse({ status: 201, description: 'successfully!' })
+  // async createHotel(
+
+  //   @Body() createProgramUmrahDto: CreateProgramUmrahSpecialDto,
+  // ) {
+  //   const { name_program, Date_Travel, total_stay , stay_in_macca, stay_in_madina } = createProgramUmrahDto;
+  //   return this.programUmrahSpecialService.create( name_program, Date_Travel, total_stay , stay_in_macca, stay_in_madina);
+  // }
   @Get()
   findAll() {
     return this.programUmrahSpecialService.findAll();

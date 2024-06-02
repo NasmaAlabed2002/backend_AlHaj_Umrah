@@ -3,6 +3,7 @@ import { HydratedDocument, SchemaType, Document, SchemaTypes } from 'mongoose';
 import { Office } from 'src/office/entities/office.entity';
 import { HotelRoom } from 'src/hotel-room/entities/hotel-room.entity';
 import { ApiProperty } from '@nestjs/swagger';
+import { Double } from 'mongodb';
 
 export type ProgramUmrahSpecialDocument = HydratedDocument<ProgramUmrahSpecial>;
 @Schema()
@@ -17,12 +18,10 @@ export class ProgramUmrahSpecial {
   ) id_HotelRoom: HotelRoom;
 
   @Prop({ type : 'Object' }) 
-  Airline : Array<Document>;
+  Airline : {name:string, price_tecket:Double }
   
-  @Prop()
-  name_program: string;
-  @Prop()
-  type_programUmrah: string;
+  // @Prop()
+  // name_program: string;
   @Prop()
   Date_Travel: Date;
   @Prop()

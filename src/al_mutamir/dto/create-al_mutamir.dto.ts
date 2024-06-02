@@ -58,12 +58,15 @@ export class CreateAlMutamirDto {
     number_bus:Number;
 
     @ApiProperty()
+    @IsString()
+    type_room:string; 
+
+    @ApiProperty()
     @IsNumber()
     seatNumber:Number;
 
     @ApiProperty()
-    @IsString()
-    type_room:string;
+    payment_method:string;
 
     @ApiProperty()
     Verification:Boolean;

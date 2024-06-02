@@ -46,7 +46,10 @@ async uploadImage( @Req() req)
   findAll() {
     return this.alMutamirService.findAll();
   }
-
+  @Get('VerificationNotTrue')
+  findVerificationNotTrue() {
+    return this.alMutamirService.findVerificationNotTrue();
+  }
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.alMutamirService.findOne(id);

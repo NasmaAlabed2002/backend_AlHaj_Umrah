@@ -45,5 +45,9 @@ export class AlMutamir {
     type_room:string
     @Prop()
     seatNumber:Number;
+    @Prop()
+    payment_method:string;
+    @Prop()
+    Verification:Boolean;
 }
 export const AlMutamirchema = SchemaFactory.createForClass(AlMutamir);

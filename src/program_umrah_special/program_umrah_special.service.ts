@@ -8,8 +8,8 @@ import { Model } from 'mongoose';
 @Injectable()
 export class ProgramUmrahSpecialService {
   constructor(@InjectModel( ProgramUmrahSpecial.name) private  ProgramUmrahSpecialModel: Model< ProgramUmrahSpecial>) {}
-  async create(name_program: string,  Date_Travel: Date, total_stay:Number , stay_in_macca:Number, stay_in_madina:Number) : Promise< ProgramUmrahSpecial> {
-    const createdPRUM = new this.ProgramUmrahSpecialModel({name_program, Date_Travel, total_stay , stay_in_macca, stay_in_madina })
+  async create(createProgramUmrahSpecialDto : CreateProgramUmrahSpecialDto) : Promise< ProgramUmrahSpecial> {
+    const createdPRUM = new this.ProgramUmrahSpecialModel(createProgramUmrahSpecialDto)
     return  createdPRUM.save();
   }
 
