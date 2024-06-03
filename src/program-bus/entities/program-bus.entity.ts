@@ -13,7 +13,8 @@ export class ProgramBus extends Document {
   @Prop(
     { type: SchemaTypes.ObjectId, ref: 'ProgramUmrah' }
   ) id_ProgramUmrah: ProgramUmrah;
-
+  @Prop()
+  count_bus:number;
   // @ApiProperty({ example: 1, description: 'id busCompany' })
   // @Prop(
   //   { type: SchemaTypes.ObjectId, ref: 'busCompany' }

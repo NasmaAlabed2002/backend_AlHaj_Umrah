@@ -7,7 +7,9 @@ import { SeatDto } from "./seat.dto";
 export class CreateProgramBusDto {
     @IsString()
     id_ProgramUmrah: string;
-    
+ 
+  
+    count_bus:number;
     // @IsString()
     // id_busCompany: string;
     @ValidateNested({ each: true })

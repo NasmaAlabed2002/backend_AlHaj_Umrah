@@ -16,8 +16,14 @@ export class ProgramBusController {
   create(@Body() createProgramBusDto: CreateProgramBusDto) {
     return this.programBusService.create(createProgramBusDto);
   }
+  @Post(':id_ProgramUmrah/:number_bus')
+  async addBusWithSeats(
+    @Param('id_ProgramUmrah') id_ProgramUmrah: string,
+    @Param('number_bus') number_bus: number,
+  ): Promise<void> {
+    await this.programBusService.addBusWithSeats(id_ProgramUmrah, number_bus);
+  }
  
-
   //////////////////////////////////
   @Get('findAll')
   findAll() {
@@ -79,7 +85,7 @@ export class ProgramBusController {
     return this.programBusService.reserveSeat(id,
       // id,
       //  name_company,
-        number_bus, seatNumber , name_passenger);
+        number_bus, seatNumber , name_passenger );
   }
   @Patch(':id/cancel-reservation/:number_bus/:name_passenger')
   async cancelReservationByPassengerName(
@@ -99,8 +105,12 @@ export class ProgramBusController {
   remove(@Param('id') id: string) {
     return this.programBusService.remove(id);
   }
-
-}
+  @Delete(':id_ProgramUmrah/:number_bus')
+   async deleteSeats(
+    @Param('id_ProgramUmrah') id_ProgramUmrah: string,
+    @Param('number_bus') number_bus: number,
+  ): Promise<void> {
+    await this.programBusService.deleteSeatsByNumber(id_ProgramUmrah, number_bus)}
 // @Controller('bus-company')
 // export class BbusCompanyController {
 //   constructor(private readonly busCompanyService: BusCompanyService) {}
@@ -148,4 +158,4 @@ export class ProgramBusController {
 //   reremoveBusCompaniemove(@Param('id') id: string) {
 //     return this.busCompanyService.removeBusCompanie(id);
 //   }
-// }
+}
