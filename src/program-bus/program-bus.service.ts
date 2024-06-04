@@ -2,9 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateProgramBusDto } from './dto/create-program-bus.dto';
 import { UpdateProgramBusDto } from './dto/update-program-bus.dto';
 import { ProgramBus , ProgramBusDocument } from './entities/program-bus.entity';
-import { BusCompanyDto 
- , UpdateBusCompanyDto
-} from './dto/bus-company.dto';
+import { BusCompanyDto , UpdateBusCompanyDto} from './dto/bus-company.dto';
 import { busCompany , busCompanySchema , busCompanyDocument} from './entities/bus-company.schema';
 import { Seat , SeatSchema } from './entities/seat.schema';
 import { InjectModel } from '@nestjs/mongoose';
