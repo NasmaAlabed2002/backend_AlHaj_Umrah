@@ -82,7 +82,7 @@ export class ProgramBusService {
         
       }).exec();
    
-      if (  seat.seat[seatNumber].isReserved) {
+      if (  seat.seat[seatNumber-1].isReserved) {
         throw new Error('Seat is already reserved');
       }
       console.log(seat.seat[seatNumber].isReserved);
