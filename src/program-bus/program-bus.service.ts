@@ -173,7 +173,7 @@ async addBusWithSeats(id_ProgramUmrah: string, number_bus: number): Promise<void
     seatArray.push({
       number_bus: number_bus,
       seatNumber: i,
-      name_passenger: 'null',
+      name_passenger: null,
       isReserved: false,
     });
   }
