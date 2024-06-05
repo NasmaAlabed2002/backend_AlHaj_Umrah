@@ -88,7 +88,7 @@ export class ProgramBusService {
       console.log(seat.seat[seatNumber].isReserved);
     await this.ProgramBusModel.updateMany(
       { id, 'seat.number_bus': number_bus, 'seat.seatNumber': seatNumber},
-      { $set: { 'seat.$[seat].isReserved': false ,   'seat.$[seat].name_passenger': name_passenger } },
+      { $set: { 'seat.$[seat].isReserved': true ,   'seat.$[seat].name_passenger': name_passenger } },
       { arrayFilters: [ { 'seat.number_bus': number_bus , 'seat.seatNumber': seatNumber}] }
     );
     }
@@ -169,7 +169,7 @@ async addBusWithSeats(id_ProgramUmrah: string, number_bus: number): Promise<void
 
   const seatArray = [];
   programBus.count_bus =number_bus;
-  for (let i = 1; i <= 20; i++) {
+  for (let i = 1; i <= 30; i++) {
     seatArray.push({
       number_bus: number_bus,
       seatNumber: i,
@@ -181,13 +181,22 @@ async addBusWithSeats(id_ProgramUmrah: string, number_bus: number): Promise<void
   await programBus.save();
 }
 async deleteSeatsByNumber(id_ProgramUmrah: string, number: number) {
+  const program = await this.ProgramBusModel.findOne({ id_ProgramUmrah });
+
+  if (program.count_bus == 0) {
+    throw new Error('count_bus value is less than 0');
+  }
+
   await this.ProgramBusModel.updateOne(
     { id_ProgramUmrah },
-    { count_bus: number-1 },
-    { $pull: { seat: { number_bus: number } }}
+    { $pull: { seat: { number_bus: number } } , $inc: { count_bus:-1 }}
   )
+
+ 
+  } 
+
 }
-}
+
 
 ///طريقة اخرى لالغاء الحجز 
 //   const programBus = await this.ProgramBusModel
