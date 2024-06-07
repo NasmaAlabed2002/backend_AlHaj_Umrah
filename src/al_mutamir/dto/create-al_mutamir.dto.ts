@@ -61,15 +61,12 @@ export class CreateAlMutamirDto {
     almutamir_photo: Url;
     
     @ApiProperty()
-    @IsNumber()
     number_bus:Number;
 
     @ApiProperty()
-    @IsString()
     type_room:string; 
 
     @ApiProperty()
-    @IsNumber()
     seatNumber:Number;
 
     @ApiProperty()
