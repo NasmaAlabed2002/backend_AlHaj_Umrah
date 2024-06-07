@@ -9,26 +9,6 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ProgramUmrah , ProgramUmrahDocument } from 'src/program_umrah/entities/program_umrah.entity';
 
-// @Injectable()
-// export class BusCompanyService {
-//   constructor(
-//     @InjectModel(busCompany.name) private readonly busCompanyModel: Model<busCompanyDocument>,
-//   ) {}
-
-//   async createBusCompany(  name_company: string,  Services, goals_company , urlImageCompany:URL , urlImage,link: URL, type_bus: string , price_tecket: string): Promise<busCompany> {
-//     const createdBusCompany = new this.busCompanyModel({name_company,  Services, goals_company , urlImageCompany , urlImage,link, type_bus , price_tecket});
-//     return createdBusCompany.save();
-//   }
-//   async findAllBusCompanies(): Promise<busCompany[]> {
-//     return await this.busCompanyModel.find();
-//   }
-//   async updateBusCompanie(id: string, updateBusCompanyDto: UpdateBusCompanyDto) {
-//     await this.busCompanyModel.findByIdAndUpdate (id ,updateBusCompanyDto , {new : true});
-//   }
-//   async removeBusCompanie(id: string) {
-//     await this.busCompanyModel.findByIdAndDelete(id);
-//    }
-// }
 
 @Injectable()
 export class ProgramBusService {
@@ -43,14 +23,7 @@ export class ProgramBusService {
   async findProgramBusWithnameprogramUmrah(): Promise<ProgramBus[]>{
     return await this.ProgramBusModel.find().populate('id_ProgramUmrah','name_program').exec();
   }
-  // async findAllBusCompanies(): Promise<busCompany[]> {
-  //   return await this.ProgramBusModel.find();
-  //    }
-
-  /////////////////////BusCompany//////////////////////////////////
  
-/////////////////////////////////////////////////////////////////////////////////////////////
-
 async findRecordByIdProgramUmrah(id_ProgramUmrah: string) {
 
   const s = await this.ProgramBusModel.findOne({ id_ProgramUmrah }).exec();
@@ -105,7 +78,6 @@ async findRecordByIdProgramUmrah(id_ProgramUmrah: string) {
     }
     return programBus.id_ProgramUmrah.name_program;
   }
-////////////////////////////////
   async getPassengersByProgramCompanyAndBus( id_ProgramUmrah: string, number_bus: number,
   ){
     const programBus = await this.ProgramBusModel
@@ -124,7 +96,7 @@ async findRecordByIdProgramUmrah(id_ProgramUmrah: string) {
     // const bus = programBus.busCompany[0];
     return programBus.seat.map((seat) => seat.name_passenger);
   }
-//////////////////////////////////
+
 async getAvailableSeatsByProgramCompanyAndBus( id_ProgramUmrah: string,  number_bus: number,
 ) {
   const programBus = await this.ProgramBusModel
@@ -146,7 +118,6 @@ console.log(programBus);
   const availableSeats = programBus.seat.filter((seat) => !seat.isReserved);
   return availableSeats.map((seat) => seat.seatNumber);
 }
-/////////////////////////////////
 
 async cancelReservationByPassengerName(id_ProgramUmrah: string ,number_bus: number, seatNumber: number ,name_passenger: string): Promise<void> {
 await this.ProgramBusModel.updateMany(
@@ -197,38 +168,6 @@ async deleteSeatsByNumber(id_ProgramUmrah: string, number: number) {
 
 }
 
-
-///طريقة اخرى لالغاء الحجز 
-//   const programBus = await this.ProgramBusModel
-//     .findOne({ id })
-//     .populate({
-//       path: 'busCompany',
-//       match: { name_company, number_bus },
-//       populate: {
-//         path: 'seat',
-//         match: { name_passenger },
-//       },
-//     })
-//     .exec();
-
-//   if (!programBus || !programBus.busCompany.length) {
-//     throw new NotFoundException('Program bus not found.');
-//   }
-
-//   const bus = programBus.busCompany[0];
-//   const seatsToUpdate = bus.seat.filter((seat) => seat.name_passenger === name_passenger);
-
-//   if (seatsToUpdate.length === 0) {
-//     throw new NotFoundException('Passenger not found in the bus seats.');
-//   }
-
-//   seatsToUpdate.forEach((seat) => {
-//     seat.isReserved = false;
-//     seat.name_passenger = null;
-//   });
-
-//   await programBus.save();
-// }
 
 
  
