@@ -51,8 +51,16 @@ export class ProgramBusService {
  
 /////////////////////////////////////////////////////////////////////////////////////////////
 
+async findOneByIdProgramUmrah(id: string): Promise<ProgramBus> {
+  return await this.ProgramBusModel.findOne({ id }).exec();
 
+}
+async findRecordByIdProgramUmrah(id_ProgramUmrah: string) {
 
+  const s = await this.ProgramBusModel.findOne({ id_ProgramUmrah }).exec();
+  console.log(s);
+  return s;
+}
   async findById(id: string): Promise<ProgramBus> {
     return await this.ProgramBusModel.findById(id).exec();
   }
@@ -72,22 +80,18 @@ export class ProgramBusService {
   async remove(id: string) {
    await this.ProgramBusModel.findByIdAndDelete(id);
   }
+ 
   async  reserveSeat(
-    id: string, number_bus: number, seatNumber: number ,name_passenger: string )
+    id,id_ProgramUmrah: string, number_bus: number, seatNumber: number ,name_passenger: string )
     {
-      const seat = await this.ProgramBusModel.findOne({
-        id,
-        'seat.number_bus': number_bus,
-        'seat.seatNumber': seatNumber,
-        
-      }).exec();
-   
+      const seat = await this.ProgramBusModel.findOne({_id:id}).exec();
+      console.log(seat);
       if (  seat.seat[seatNumber-1].isReserved) {
         throw new Error('Seat is already reserved');
       }
       console.log(seat.seat[seatNumber].isReserved);
     await this.ProgramBusModel.updateMany(
-      { id, 'seat.number_bus': number_bus, 'seat.seatNumber': seatNumber},
+      {_id:id , 'id_ProgramUmrah' : id_ProgramUmrah, 'seat.number_bus': number_bus, 'seat.seatNumber': seatNumber},
       { $set: { 'seat.$[seat].isReserved': true ,   'seat.$[seat].name_passenger': name_passenger } },
       { arrayFilters: [ { 'seat.number_bus': number_bus , 'seat.seatNumber': seatNumber}] }
     );
@@ -148,9 +152,9 @@ async getAvailableSeatsByProgramCompanyAndBus( id_ProgramUmrah: string,  number_
 }
 /////////////////////////////////
 
-async cancelReservationByPassengerName(id: string,number_bus: number,name_passenger: string): Promise<void> {
+async cancelReservationByPassengerName(id: string, id_ProgramUmrah: string ,number_bus: number,name_passenger: string): Promise<void> {
 await this.ProgramBusModel.updateMany(
-  { id,  'seat.number_bus': number_bus , 'seat.name_passenger': name_passenger},
+  { _id:id , 'id_ProgramUmrah' : id_ProgramUmrah,  'seat.number_bus': number_bus , 'seat.name_passenger': name_passenger},
   { $set: { 'seat.$[seat].isReserved':false ,  'seat.$[seat].name_passenger': null }  },
   { arrayFilters: [  { 'seat.number_bus': number_bus , 'seat.name_passenger': name_passenger }] }
 );

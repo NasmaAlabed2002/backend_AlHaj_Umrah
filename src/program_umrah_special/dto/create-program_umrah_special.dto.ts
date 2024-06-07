@@ -3,9 +3,10 @@ import { IsNumber , IsString } from "class-validator";
 import { Double } from "mongodb";
 export class CreateProgramUmrahSpecialDto {
 
-    // @ApiProperty()
-    // @IsString()
-    // name_program:string;
+   @ApiProperty()
+   id_Office:string;
+   @ApiProperty()
+   id_HotelRoom:string;
     
     @ApiProperty()
     Airline : {name:string, price_tecket:Double }
