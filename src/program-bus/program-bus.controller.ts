@@ -48,10 +48,6 @@ export class ProgramBusController {
   findOne(@Param('id') id: string) {
     return this.programBusService.findOne(id);
   }
-  @Get(':id_ProgramUmrah')
-  async getRecordByIdProgramUmrah(@Param('id_ProgramUmrah') id_ProgramUmrah: string): Promise<ProgramBus> {
-    return this.programBusService.findOneByIdProgramUmrah(id_ProgramUmrah);
-  }
 
 //   @Get(':id_ProgramUmrah')
 //   async getRecordByIdProgramUmrah(@Param('id_ProgramUmrah') id_ProgramUmrah: string) {
@@ -86,28 +82,23 @@ export class ProgramBusController {
   update(@Param('id') id: string, @Body() updateProgramBusDto: UpdateProgramBusDto) {
     return this.programBusService.update(id, updateProgramBusDto);
   }
-  @Patch(':id/reserve-seat/:id_ProgramUmrah/:number_bus/:seatNumber/:name_passenger')
+  @Patch(':id_ProgramUmrah/reserve-seat/:number_bus/:seatNumber/:name_passenger')
   async reserveSeat(
-    @Param('id') id: string,
     @Param('id_ProgramUmrah') id_ProgramUmrah: string,
     @Param('number_bus') number_bus: number,
     @Param('seatNumber') seatNumber: number,
     @Param('name_passenger') name_passenger: string,
   ) {
-    return this.programBusService.reserveSeat(id , id_ProgramUmrah,
-      // id,
-      //  name_company,
-        number_bus, seatNumber , name_passenger );
+    return this.programBusService.reserveSeat( id_ProgramUmrah, number_bus, seatNumber , name_passenger );
   }
-  @Patch(':id/cancel-reservation/:id_ProgramUmrah/:number_bus/:name_passenger')
+  @Patch(':id_ProgramUmrah/cancel-reservation/:number_bus/:seatNumber/:name_passenger')
   async cancelReservationByPassengerName(
-    @Param('id') id: string,
     @Param('id_ProgramUmrah') id_ProgramUmrah: string,
-    // @Param('name_company') name_company: string,
     @Param('number_bus') number_bus: number,
+    @Param('seatNumber') seatNumber: number,
     @Param('name_passenger') name_passenger: string,
   ) {
-    await this.programBusService.cancelReservationByPassengerName(id,id_ProgramUmrah,number_bus, name_passenger);  }
+    await this.programBusService.cancelReservationByPassengerName(id_ProgramUmrah,number_bus,seatNumber, name_passenger);  }
 
   ////////////////////////////////////////////////////////////////////////
   @Delete(':id')
