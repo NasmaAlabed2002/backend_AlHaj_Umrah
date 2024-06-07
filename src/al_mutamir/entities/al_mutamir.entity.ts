@@ -4,10 +4,16 @@ import { HydratedDocument ,SchemaTypes } from 'mongoose';
 import { URL } from 'url';
 import { ProgramBus } from 'src/program-bus/entities/program-bus.entity';
 import { ProgUmrahHotel } from 'src/prog_umrah_hotel/entities/prog_umrah_hotel.entity';
-
+import { ProgramUmrahSpecial } from 'src/program_umrah_special/entities/program_umrah_special.entity';
 export type AlMutamirDocument = HydratedDocument<AlMutamir>
 @Schema()
 export class AlMutamir {
+
+    @ApiProperty({ example: 1, description: 'id ProgramUmrahSpecial' })
+    @Prop(
+        { type: SchemaTypes.ObjectId, ref: 'ProgramUmrahSpecial' }
+    ) id_ProgramUmrahSpecial: ProgramUmrahSpecial;
+
     @ApiProperty({ example: 1, description: 'id ProgramBus' })
     @Prop(
         { type: SchemaTypes.ObjectId, ref: 'id ProgramBus' }

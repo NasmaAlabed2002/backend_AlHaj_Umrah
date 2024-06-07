@@ -4,6 +4,13 @@ import { Url } from "url";
 export class CreateAlMutamirDto {
 
     @ApiProperty()
+    id_ProgramUmrahSpecial:string;
+    @ApiProperty()
+    id_programBus:string;
+    @ApiProperty()
+    id_ProgUmrahHotel:string;
+
+    @ApiProperty()
     @IsString()
     @IsNotEmpty()
     full_name: string;
