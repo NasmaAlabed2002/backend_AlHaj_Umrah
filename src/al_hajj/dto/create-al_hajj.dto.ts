@@ -1,71 +1,73 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsBoolean, IsDate, IsEmail, IsInt, IsNotEmpty, IsObject, IsString } from 'class-validator';
 import { GridFSBucket } from "mongodb";
+import { Url } from "url";
 
 export class CreateAlHajjDto {
+
     @ApiProperty()
-    @IsString()
-    @IsNotEmpty()
-    name: string;
+    id_ProgAlHajHotel:string;
 
     @ApiProperty()
     @IsString()
-    @IsNotEmpty()
+    // @IsNotEmpty()
+    full_name: string;
+
+    @ApiProperty()
+    @IsString()
+    // @IsNotEmpty()
     name_father: string;
 
     @ApiProperty()
     @IsString()
-    @IsNotEmpty()
+    // @IsNotEmpty()
     name_mother: string;
 
-    @ApiProperty()
-    @IsNotEmpty()
-    birth: Date;
-
-
-    @ApiProperty()
-    @IsString()
-    @IsNotEmpty()
-    gender: string;
-
-   
-    companionId: string;
-
- 
-    @ApiProperty()
-    nationalNumber: string;
-
-    @ApiProperty()
-    nationalNumbercomp: string;
-    
     @ApiProperty()
     @IsEmail()
     email: string;
 
     @ApiProperty()
-    @IsString()
-    @IsNotEmpty()
-    Nationality: string;
+    phone_number:number;
 
+    @ApiProperty()
+    // @IsNotEmpty()
+    birth: Date;
 
     @ApiProperty()
     @IsString()
-    @IsNotEmpty()
+    // @IsNotEmpty()
+    gender: string;
+
+    @ApiProperty()
+    Health_status:string;
+
+    @ApiProperty()
+    companion1:string;
+
+    @ApiProperty()
+    companion2:string;
+
+    @ApiProperty()
+    @IsString()
+    // @IsNotEmpty()
+    Nationality: string;
+
+    @ApiProperty()
+    @IsString()
+    // @IsNotEmpty()
     passport_number: string;
 
-    // @ApiProperty()
-    // // @IsNotEmpty()
-    // passport_photo : GridFSBucket;
+    @ApiProperty()
+    // @IsNotEmpty()
+    passport_photo :Url;
 
-    // @ApiProperty()
-    // @IsBoolean()
+    @ApiProperty()
+    alhaj_photo:Url;
 
-    // Accept : boolean;
+    @ApiProperty()
+    payment_method:string;
 
-    // @ApiProperty()
-    // @IsObject()
-    // visa :  ob
-
-    // @ApiProperty()
-    //@IsDate()
+    @ApiProperty()
+    Verification:string;
 }
