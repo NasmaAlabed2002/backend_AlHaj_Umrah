@@ -1,5 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import { ApiProperty } from '@nestjs/swagger';
+import { Url } from 'url';
+import { ProgAlHajHotel } from 'src/prog_al-haj_hotel/entities/prog_al-haj_hotel.entity';
 
 export type AlHajjDocument = HydratedDocument<AlHajj>
 @Schema()
