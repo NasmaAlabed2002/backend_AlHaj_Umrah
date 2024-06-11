@@ -60,7 +60,7 @@ export class CreateAlHajjDto {
 
     @ApiProperty()
     // @IsNotEmpty()
-    passport_photo :Url;
+    passport_photo :URL;
 
     @ApiProperty()
     alhaj_photo:Url;

@@ -35,6 +35,8 @@ export class AlHajj {
   Nationality: string;
   @Prop()
   passport_number: string;
+  @Prop()
+  passport_photo :URL;
 }
 
 export const AlHajjchema = SchemaFactory.createForClass(AlHajj);
