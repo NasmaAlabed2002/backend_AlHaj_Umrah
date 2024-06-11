@@ -35,19 +35,6 @@ export class AlHajj {
   Nationality: string;
   @Prop()
   passport_number: string;
-  // @Prop({ required: true })
-  // nationalNumber: string;
-  // @Prop()
-  // nationalNumbercomp: string;
-  // @Prop()
-  // companionId: string;
-  // @Prop()
-  // passport_photo : GridFSBucket;
-  // @Prop()
-  // Accept : boolean;
-  // @Prop()
-  // visa :  object;
-  
 }
 
 export const AlHajjchema = SchemaFactory.createForClass(AlHajj);
