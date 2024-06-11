@@ -30,6 +30,8 @@ export class AlHajj {
   @Prop()
   companion1:string;
   @Prop()
+  companion2:string;
+  @Prop()
   Nationality: string;
   @Prop()
   passport_number: string;
