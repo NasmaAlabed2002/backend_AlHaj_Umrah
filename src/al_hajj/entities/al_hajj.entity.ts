@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import { HydratedDocument , SchemaTypes} from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 import { Url } from 'url';
 import { ProgAlHajHotel } from 'src/prog_al-haj_hotel/entities/prog_al-haj_hotel.entity';
@@ -7,7 +7,10 @@ import { ProgAlHajHotel } from 'src/prog_al-haj_hotel/entities/prog_al-haj_hotel
 export type AlHajjDocument = HydratedDocument<AlHajj>
 @Schema()
 export class AlHajj {
-
+  @ApiProperty({ example: 1, description: 'id ProgAlHajHotel' })
+  @Prop(
+      { type: SchemaTypes.ObjectId, ref: 'ProgAlHajHotel' }
+  ) id_ProgAlHajHotel: ProgAlHajHotel;
   @Prop()
   name: string;
   @Prop()
