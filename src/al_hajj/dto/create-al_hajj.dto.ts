@@ -63,11 +63,14 @@ export class CreateAlHajjDto {
     passport_photo :URL;
 
     @ApiProperty()
-    alhaj_photo:Url;
+    alhaj_photo:URL;
 
     @ApiProperty()
     payment_method:string;
 
     @ApiProperty()
     Verification:string;
+
+    @ApiProperty()
+    visa_photo:URL;
 }

@@ -37,6 +37,14 @@ export class AlHajj {
   passport_number: string;
   @Prop()
   passport_photo :URL;
+  @Prop()
+  alhaj_photo:URL;
+  @Prop()
+  payment_method:string;
+  @Prop()
+  Verification:string;
+  @Prop()
+  visa_photo:URL;
 }
 
 export const AlHajjchema = SchemaFactory.createForClass(AlHajj);
