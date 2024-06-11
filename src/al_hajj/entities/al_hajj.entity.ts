@@ -28,6 +28,8 @@ export class AlHajj {
   @Prop()
   Health_status:string;
   @Prop()
+  companion1:string;
+  @Prop()
   Nationality: string;
   @Prop()
   passport_number: string;
