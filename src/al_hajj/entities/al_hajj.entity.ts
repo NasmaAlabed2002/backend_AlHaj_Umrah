@@ -12,15 +12,21 @@ export class AlHajj {
       { type: SchemaTypes.ObjectId, ref: 'ProgAlHajHotel' }
   ) id_ProgAlHajHotel: ProgAlHajHotel;
   @Prop()
-  name: string;
+  full_name: string;
   @Prop()
   name_father: string;
   @Prop()
   name_mother: string;
   @Prop()
+  email: string;
+  @Prop()
+  phone_number:number;
+  @Prop()
   birth: Date;
   @Prop()
   gender: string;
+  @Prop()
+  Health_status:string;
   @Prop()
   Nationality: string;
   @Prop()
@@ -33,8 +39,7 @@ export class AlHajj {
   @Prop()
   companionId: string;
 
-  @Prop()
-  email: string;
+ 
 
   // @Prop()
   // passport_photo : GridFSBucket;
