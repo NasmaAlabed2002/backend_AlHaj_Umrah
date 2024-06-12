@@ -69,7 +69,7 @@ export class CreateAlHajjDto {
     payment_method:string;
 
     @ApiProperty()
-    Verification:string;
+    Verification:boolean;
 
     @ApiProperty()
     visa_photo:URL;

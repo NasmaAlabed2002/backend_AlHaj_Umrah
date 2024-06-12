@@ -42,9 +42,10 @@ export class AlHajj {
   @Prop()
   payment_method:string;
   @Prop()
-  Verification:string;
+  Verification:boolean;
   @Prop()
   visa_photo:URL;
 }
 
 export const AlHajjchema = SchemaFactory.createForClass(AlHajj);
+
