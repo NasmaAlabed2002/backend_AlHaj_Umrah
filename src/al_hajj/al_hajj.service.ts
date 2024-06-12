@@ -10,10 +10,10 @@ export class AlHajjService {
 
   constructor(@InjectModel( AlHajj.name) private  AlHajjModel: Model< AlHajj>) {}
   async create(createAlHajjDto: CreateAlHajjDto) : Promise<AlHajj> {
-    if (createAlHajjDto.gender === 'female' && this.calculateAge(createAlHajjDto.birth) < 45) {
-      if(!createAlHajjDto.Nationality){throw new Error('Please provide the escort ID for a male traveler to accompany you.');
-    }}
-   if (this.calculateAge(createAlHajjDto.birth) < this.minimumAge) {
+    // if (createAlHajjDto.gender === 'female' && this.calculateAge(createAlHajjDto.birth) < 45) {
+    //   if(!createAlHajjDto.Nationality){throw new Error('Please provide the escort ID for a male traveler to accompany you.');
+    // }}
+   if (this.calculateAge(createAlHajjDto.birth) <44 ) {
       throw new Error('Sorry, you are under the age allowed for travel');
     }
     const createdAlHajj= new this.AlHajjModel(createAlHajjDto)
@@ -45,27 +45,7 @@ export class AlHajjService {
     return  Math.abs(ageDate.getUTCFullYear() - 1970);
   }
 
-  async findByNationalNumber(nationalNumbercomp: string): Promise<string> {
-    return this.AlHajjModel.findOne({ nationalNumbercomp }).exec().then(AlHajj => {
-        if (AlHajj) {
-          return AlHajj.id;
-        } else {
-          throw new Error("No user found with the provided national number.");
-        }
-      });
-    }
-// متغير يقوم المدير باسناد قيمة له حسب العمر المسموح للمسافرين
-public minimumAge: number = 67; // Default minimum age
 
-getMinimumAge(): number {
-  return this.minimumAge;
-}
-
-setMinimumAge(age: number) {
-  this.minimumAge = age;
-}
-  
-////////////////////////////////////////
   async findAll() {
     return await this.AlHajjModel.find();
   }

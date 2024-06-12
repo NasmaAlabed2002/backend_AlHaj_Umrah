@@ -7,11 +7,15 @@ export type ProgUmrahAirlineDocument = ProgUmrahAirline & Document;
 @Schema({versionKey:false})
 export class ProgUmrahAirline extends Document {
     
-    @Prop (
-    { type : SchemaTypes.ObjectId , ref : 'ProgramUmrah' }
-  ) id_ProgramUmrah : ProgramUmrah;
+  //   @Prop (
+  //   { type : SchemaTypes.ObjectId , ref : 'ProgramUmrah' }
+  // ) id_ProgramUmrah : ProgramUmrah;
 
-  @Prop({ type : 'Object' }) 
-  Airline : Array<Document>;}
-  
+  // @Prop({ type : 'Object' }) 
+  // Airline : Array<Document>;
+
+  @Prop ()
+  minimumAge : Date;
+}
+ 
   export const ProgUmrahAirlinechema=SchemaFactory.createForClass(ProgUmrahAirline);

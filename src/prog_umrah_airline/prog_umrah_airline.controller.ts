@@ -3,14 +3,14 @@ import { ProgUmrahAirlineService } from './prog_umrah_airline.service';
 import { CreateProgUmrahAirlineDto } from './dto/create-prog_umrah_airline.dto';
 import { UpdateProgUmrahAirlineDto } from './dto/update-prog_umrah_airline.dto';
 
-@Controller('prog-umrah-airline')
+@Controller('minimumAge')
 export class ProgUmrahAirlineController {
   constructor(private readonly progUmrahAirlineService: ProgUmrahAirlineService) {}
 
-  // @Post()
-  // create(@Body() createProgUmrahAirlineDto: CreateProgUmrahAirlineDto) {
-  //   return this.progUmrahAirlineService.create(createProgUmrahAirlineDto);
-  // }
+  @Post()
+  create(@Body() createProgUmrahAirlineDto: CreateProgUmrahAirlineDto) {
+    return this.progUmrahAirlineService.create(createProgUmrahAirlineDto);
+  }
 
   // @Get()
   // findAll() {

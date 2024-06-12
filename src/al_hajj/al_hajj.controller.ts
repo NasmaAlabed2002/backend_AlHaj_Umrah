@@ -11,32 +11,11 @@ export class AlHajjController {
   create(@Body() createAlHajjDto: CreateAlHajjDto) {
     return this.alHajjService.create(createAlHajjDto);
   }
-////////////////////////////////////////////////////////
-// متغير يقوم المدير باسناد قيمة له حسب العمر المسموح للمسافرين
-@Get('minimumAge')
-getMinimumAge() {
-  return { minimumAge: this.alHajjService.getMinimumAge() };
-}
-
-@Post('minimumAge')
-setMinimumAge(@Body('minimumAge') minimumAge: number) {
-  this.alHajjService.setMinimumAge(minimumAge);
-  //return { message: 'Minimum age updated successfully.' };
-}
-/////////////////////////////////////
   @Get()
   findAll() {
     return this.alHajjService.findAll();
   }
-  @Get('search/:nationalNumbercomp')
-  async searchByNationalNumber(@Param('nationalNumbercomp') nationalNumbercomp: string): Promise<string> {
-    try {
-      const alhajjId = await this.alHajjService.findByNationalNumber(nationalNumbercomp);
-      return alhajjId;
-    } catch (error) {
-      return error.message;
-    }
-  }
+
   @Get(':id/age')
   async getAge(@Param('id') id: string): Promise<number> {
     return this.alHajjService.calculateAgeFromDOB(id);

@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { Date } from "mongoose";
 export class CreateProgUmrahAirlineDto {  
      @ApiProperty()
-    Airline : Array<Document>;
+     minimumAge : Date;
 }
