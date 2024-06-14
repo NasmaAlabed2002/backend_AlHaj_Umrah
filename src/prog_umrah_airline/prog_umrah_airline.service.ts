@@ -13,19 +13,19 @@ export class ProgUmrahAirlineService {
     return createdprogUA.save();
   }
 
-//   async findAll() {
-//     return  await this.ProgUmrahAirlineModel.find();
-//   }
+  async findAll() {
+    return  await this.ProgUmrahAirlineModel.find();
+  }
 
-//  async findOne(id: string) {
-//     return await this.ProgUmrahAirlineModel.findOne({_id:id});
-//   }
+ async findOne(id: string) {
+    return await this.ProgUmrahAirlineModel.findOne({_id:id});
+  }
 
-//   async update(id: string , updateProgUmrahAirlineDto: UpdateProgUmrahAirlineDto) {
-//     await this.ProgUmrahAirlineModel.findByIdAndUpdate(id , updateProgUmrahAirlineDto , {new : true});
-//   }
+  async update(id: string , updateProgUmrahAirlineDto: UpdateProgUmrahAirlineDto) {
+    await this.ProgUmrahAirlineModel.findByIdAndUpdate(id , updateProgUmrahAirlineDto , {new : true});
+  }
 
-//   async remove(id: string ) {
-//   await this.ProgUmrahAirlineModel.findByIdAndDelete(id);
-//   }
+  async remove(id: string ) {
+  await this.ProgUmrahAirlineModel.findByIdAndDelete(id);
+  }
 }

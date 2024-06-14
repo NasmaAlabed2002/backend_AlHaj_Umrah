@@ -4,7 +4,7 @@ import { HydratedDocument, SchemaType,Document, SchemaTypes } from 'mongoose';
 import { ProgramUmrah } from 'src/program_umrah/entities/program_umrah.entity';
 
 export type ProgUmrahAirlineDocument = ProgUmrahAirline & Document;
-@Schema({versionKey:false})
+@Schema()
 export class ProgUmrahAirline extends Document {
     
   //   @Prop (
@@ -15,7 +15,7 @@ export class ProgUmrahAirline extends Document {
   // Airline : Array<Document>;
 
   @Prop ()
-  minimumAge : Date;
+   minimumAge : Date;
 }
  
   export const ProgUmrahAirlinechema=SchemaFactory.createForClass(ProgUmrahAirline);

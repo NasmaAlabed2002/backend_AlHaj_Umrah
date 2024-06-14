@@ -5,6 +5,14 @@ import { isNativeError } from "util/types";
 
 export class CreateProgramUmrahDto {
     @ApiProperty()
+    id_Office:string;
+
+    @ApiProperty()
+    id_busCompany:string;
+
+    @ApiProperty()
+    Airline : {name:string, price_tecket:Double }
+    @ApiProperty()
     @IsString()
     name_program:string;
 
@@ -37,8 +45,4 @@ export class CreateProgramUmrahDto {
     price3: string;
     @ApiProperty()
     price4: string;
-    @ApiProperty()
-    Airline : {name:string, price_tecket:Double }
-
-
 }

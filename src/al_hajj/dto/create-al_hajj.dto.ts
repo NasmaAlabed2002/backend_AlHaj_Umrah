@@ -48,6 +48,13 @@ export class CreateAlHajjDto {
     @ApiProperty()
     companion2:string;
 
+    
+    @ApiProperty()
+    silat_alqaraba:string;
+ 
+    @ApiProperty()
+    iscompanion:boolean;
+    
     @ApiProperty()
     @IsString()
     // @IsNotEmpty()

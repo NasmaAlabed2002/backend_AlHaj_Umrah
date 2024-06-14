@@ -34,5 +34,10 @@ export class AlHajjController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.alHajjService.remove(id);
+    
   }
+  // @Delete()
+  // deleteAllRecords() {
+  //   return this.alHajjService.deleteAllRecords();
+  // }
 }

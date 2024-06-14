@@ -3,7 +3,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Double } from 'mongodb';
 import { HydratedDocument, SchemaType, Document, SchemaTypes } from 'mongoose';
 import { Office } from 'src/office/entities/office.entity';
-import { ProgramBus } from 'src/program-bus/entities/program-bus.entity';
+import { busCompany } from 'src/program-bus/entities/bus-company.schema';
 export type ProgramUmrahDocument = HydratedDocument<ProgramUmrah>;
 @Schema()
 export class ProgramUmrah {
@@ -33,8 +33,8 @@ export class ProgramUmrah {
   @Prop()
   price4: string;
   @Prop(
-    { type: SchemaTypes.ObjectId, ref: 'ProgramBus' }
-  ) id_ProgramBus: ProgramBus;
+    { type: SchemaTypes.ObjectId, ref: 'busCompany' }
+  ) id_busCompany: busCompany;
   @Prop({ type : 'Object' }) 
   Airline : {name:string, price_tecket:Double }
 }
