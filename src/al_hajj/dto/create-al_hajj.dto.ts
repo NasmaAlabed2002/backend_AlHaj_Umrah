@@ -9,17 +9,17 @@ export class CreateAlHajjDto {
     id_ProgAlHajHotel:string;
 
     @ApiProperty()
-    @IsString()
+    // @IsString()
     // @IsNotEmpty()
     full_name: string;
 
     @ApiProperty()
-    @IsString()
+    // @IsString()
     // @IsNotEmpty()
     name_father: string;
 
     @ApiProperty()
-    @IsString()
+    // @IsString()
     // @IsNotEmpty()
     name_mother: string;
 
@@ -35,7 +35,7 @@ export class CreateAlHajjDto {
     birth: Date;
 
     @ApiProperty()
-    @IsString()
+    // @IsString()
     // @IsNotEmpty()
     gender: string;
 
@@ -56,12 +56,12 @@ export class CreateAlHajjDto {
     iscompanion:boolean;
     
     @ApiProperty()
-    @IsString()
+    // @IsString()
     // @IsNotEmpty()
     Nationality: string;
 
     @ApiProperty()
-    @IsString()
+    // @IsString()
     // @IsNotEmpty()
     passport_number: string;
 
