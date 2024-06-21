@@ -36,8 +36,8 @@ export class AlHajjController {
     return this.alHajjService.remove(id);
     
   }
-  // @Delete()
-  // deleteAllRecords() {
-  //   return this.alHajjService.deleteAllRecords();
-  // }
+  @Delete()
+  deleteAllRecords() {
+    return this.alHajjService.deleteAllRecords();
+  }
 }

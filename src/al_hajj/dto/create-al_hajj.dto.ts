@@ -28,7 +28,7 @@ export class CreateAlHajjDto {
     email: string;
 
     @ApiProperty()
-    phone_number:number;
+    phone_number: string;
 
     @ApiProperty()
     // @IsNotEmpty()

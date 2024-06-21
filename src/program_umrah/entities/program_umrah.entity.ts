@@ -12,7 +12,7 @@ export class ProgramUmrah {
   ) id_Office: Office;
   @Prop()
   name_program: string;
-  @Prop()
+  @Prop({ default:()=> Date.now() ,required:true })
   Date_Travel: Date;
   @Prop()
   Date_Travel_Hijri :string;

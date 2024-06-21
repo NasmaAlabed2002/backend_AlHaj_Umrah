@@ -33,7 +33,7 @@ export class AlMutamir {
     phone_number:Number;
     @Prop()
     email: string
-    @Prop()
+    @Prop({ default:()=> Date.now() ,required:true })
     birth: Date;
     @Prop()
     gender: string;

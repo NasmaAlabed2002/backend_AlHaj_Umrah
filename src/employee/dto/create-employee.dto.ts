@@ -10,7 +10,7 @@ export class CreateEmployeeDto {
     @IsString()
     lastname:string;
   
-    @ApiProperty()
+    @ApiProperty({ default:()=> Date.now() ,required:true })
     birth:Date;
     
 

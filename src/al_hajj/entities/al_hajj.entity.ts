@@ -20,17 +20,23 @@ export class AlHajj {
   @Prop()
   email: string;
   @Prop()
-  phone_number:number;
-  @Prop()
+  phone_number:string;
+  @Prop({ default:()=> Date.now() , required:true })
   birth: Date;
   @Prop()
   gender: string;
   @Prop()
   Health_status:string;
+  @Prop(
+    { type: SchemaTypes.ObjectId, ref: 'AlHajj' }) 
+  companion1:AlHajj;
+  @Prop(
+    { type: SchemaTypes.ObjectId, ref: 'AlHajj' }) 
+  companion2:AlHajj;
   @Prop()
-  companion1:string;
+  silat_alqaraba:string;
   @Prop()
-  companion2:string;
+  iscompanion:boolean;
   @Prop()
   Nationality: string;
   @Prop()

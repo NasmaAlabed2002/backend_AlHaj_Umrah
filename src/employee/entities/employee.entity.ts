@@ -16,7 +16,7 @@ export class Employee {
     firstname:string;
     @Prop()
     lastname:string;
-    @Prop()
+    @Prop({ default:()=> Date.now() ,required:true })
     birth:Date;
     @Prop()
     specialty:string;
@@ -28,7 +28,7 @@ export class Employee {
     Educational_attainment:string;
     @Prop()
     adress:string;
-    @Prop()
+    @Prop({ default:()=> Date.now() ,required:true })
     dateEmployee:Date;
     @Prop()
     Reservation_code:string;

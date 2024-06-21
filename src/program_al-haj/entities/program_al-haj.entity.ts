@@ -12,7 +12,7 @@ export class ProgramAlHaj {
       Airline : {name:string, price_tecket:Double }
       @Prop()
       name_program: string;
-      @Prop()
+      @Prop({ default:()=> Date.now() ,required:true })
       Date_Travel: Date;
       @Prop()
       Date_Travel_Hijri :string;

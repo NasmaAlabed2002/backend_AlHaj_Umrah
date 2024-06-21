@@ -26,10 +26,13 @@ export class AlHajjService {
     console.log(createAlHajjDto.birth < min.minimumAge);
     const age1 = this.calculateAge(createAlHajjDto.birth);
     const age2 = this.calculateAge(min.minimumAge);
-    if (age1.years < age2.years ||
+    console.log(!createAlHajjDto.iscompanion); 
+    if(!createAlHajjDto.iscompanion){
+      if (age1.years < age2.years ||
         (age1.years === age2.years && age1.months < age2.months) ||
         (age1.years === age2.years && age1.months === age2.months && age1.days < age2.days)) {
       throw new Error('Sorry, you are under the age allowed for travel');
+    }
     }
     const createdAlHajj= new this.AlHajjModel(createAlHajjDto)
     return createdAlHajj.save();

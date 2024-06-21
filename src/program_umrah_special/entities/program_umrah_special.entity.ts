@@ -22,7 +22,7 @@ export class ProgramUmrahSpecial {
   
   // @Prop()
   // name_program: string;
-  @Prop()
+  @Prop({ default:()=> Date.now() ,required:true })
   Date_Travel: Date;
   @Prop()
   total_stay: Number;
