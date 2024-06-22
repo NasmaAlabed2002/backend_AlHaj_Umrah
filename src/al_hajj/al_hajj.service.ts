@@ -74,7 +74,12 @@ export class AlHajjService {
     return  Math.abs(ageDate.getUTCFullYear() - 1970);
   }
 
-
+  async getAlHajjWithCompanions(id: string): Promise<AlHajj> {
+    return this.AlHajjModel.findById(id)
+      .populate('companion1')
+      .populate('companion2')
+      .exec();
+  }
   async findAll() {
     return await this.AlHajjModel.find();
   }

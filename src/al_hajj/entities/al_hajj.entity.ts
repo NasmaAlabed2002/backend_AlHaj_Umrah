@@ -4,7 +4,8 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Url } from 'url';
 import { ProgAlHajHotel } from 'src/prog_al-haj_hotel/entities/prog_al-haj_hotel.entity';
 
-export type AlHajjDocument = HydratedDocument<AlHajj>
+export type AlHajjDocument = HydratedDocument<AlHajj> & AlHajj & Document;
+
 @Schema()
 export class AlHajj {
   @ApiProperty({ example: 1, description: 'id ProgAlHajHotel' })
@@ -12,21 +13,21 @@ export class AlHajj {
       { type: SchemaTypes.ObjectId, ref: 'ProgAlHajHotel' }
   ) id_ProgAlHajHotel: ProgAlHajHotel | null  ;
   @Prop()
-  full_name: string;
+  full_name: string | null;
   @Prop()
-  name_father: string;
+  name_father: string | null;
   @Prop()
-  name_mother: string;
+  name_mother: string | null;
   @Prop()
-  email: string;
+  email: string | null;
   @Prop()
-  phone_number:string;
+  phone_number:string | null;
   @Prop({ default:()=> Date.now() , required:true })
-  birth: Date;
+  birth: Date | null;
   @Prop()
-  gender: string;
+  gender: string | null;
   @Prop()
-  Health_status:string;
+  Health_status:string | null;
   @Prop(
     { type: SchemaTypes.ObjectId, ref: 'AlHajj' }) 
   companion1:AlHajj | null ;
@@ -34,23 +35,23 @@ export class AlHajj {
     { type: SchemaTypes.ObjectId, ref: 'AlHajj' }) 
   companion2:AlHajj | null ;
   @Prop()
-  silat_alqaraba:string;
+  silat_alqaraba:string | null ;
   @Prop()
-  iscompanion:boolean;
+  iscompanion:boolean| null;
   @Prop()
-  Nationality: string;
+  Nationality: string | null;
   @Prop()
-  passport_number: string;
+  passport_number: string | null;
   @Prop()
-  passport_photo :URL;
+  passport_photo :URL | null;
   @Prop()
-  alhaj_photo:URL;
+  alhaj_photo:URL | null ;
   @Prop()
-  payment_method:string;
+  payment_method:string | null;
   @Prop()
-  Verification:boolean;
+  Verification:boolean | null ;
   @Prop()
-  visa_photo:URL;
+  visa_photo:URL | null; 
 }
 
 export const AlHajjchema = SchemaFactory.createForClass(AlHajj);
