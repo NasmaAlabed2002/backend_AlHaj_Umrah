@@ -3,7 +3,7 @@ import { HydratedDocument , SchemaTypes} from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 import { Url } from 'url';
 import { ProgAlHajHotel } from 'src/prog_al-haj_hotel/entities/prog_al-haj_hotel.entity';
-
+import { Types } from 'mongoose';
 export type AlHajjDocument = HydratedDocument<AlHajj> & AlHajj & Document;
 
 @Schema()
@@ -29,11 +29,11 @@ export class AlHajj {
   @Prop()
   Health_status:string | null;
   @Prop(
-    { default: 'null' ,type: SchemaTypes.ObjectId, ref: 'AlHajj' }) 
-  companion1:AlHajj | null ;
+    {type: SchemaTypes.ObjectId, ref: 'AlHajj' }) 
+  companion1: string | Types.ObjectId ;
   @Prop(
-    { default: 'null' ,type: SchemaTypes.ObjectId, ref: 'AlHajj' }) 
-  companion2:AlHajj | null ;
+    { type: SchemaTypes.ObjectId, ref: 'AlHajj' }) 
+  companion2: string | Types.ObjectId ;
   @Prop()
   silat_alqaraba:string | null ;
   @Prop()
