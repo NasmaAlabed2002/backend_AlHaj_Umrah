@@ -29,10 +29,10 @@ export class AlHajj {
   @Prop()
   Health_status:string | null;
   @Prop(
-    { type: SchemaTypes.ObjectId, ref: 'AlHajj' }) 
+    { default: 'null' ,type: SchemaTypes.ObjectId, ref: 'AlHajj' }) 
   companion1:AlHajj | null ;
   @Prop(
-    { type: SchemaTypes.ObjectId, ref: 'AlHajj' }) 
+    { default: 'null' ,type: SchemaTypes.ObjectId, ref: 'AlHajj' }) 
   companion2:AlHajj | null ;
   @Prop()
   silat_alqaraba:string | null ;
