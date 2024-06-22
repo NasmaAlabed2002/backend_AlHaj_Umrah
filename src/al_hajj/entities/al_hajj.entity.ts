@@ -10,7 +10,7 @@ export class AlHajj {
   @ApiProperty({ example: 1, description: 'id ProgAlHajHotel' })
   @Prop(
       { type: SchemaTypes.ObjectId, ref: 'ProgAlHajHotel' }
-  ) id_ProgAlHajHotel: ProgAlHajHotel;
+  ) id_ProgAlHajHotel: ProgAlHajHotel | null  ;
   @Prop()
   full_name: string;
   @Prop()
@@ -29,10 +29,10 @@ export class AlHajj {
   Health_status:string;
   @Prop(
     { type: SchemaTypes.ObjectId, ref: 'AlHajj' }) 
-  companion1:AlHajj;
+  companion1:AlHajj | null ;
   @Prop(
     { type: SchemaTypes.ObjectId, ref: 'AlHajj' }) 
-  companion2:AlHajj;
+  companion2:AlHajj | null ;
   @Prop()
   silat_alqaraba:string;
   @Prop()
