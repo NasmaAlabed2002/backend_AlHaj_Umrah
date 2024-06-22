@@ -51,7 +51,9 @@ export class AlHajj {
   @Prop()
   Verification:boolean | null ;
   @Prop()
-  visa_photo:URL | null; 
+  type_room:string | null; 
+  @Prop() 
+  name_program :string;
 }
 
 export const AlHajjchema = SchemaFactory.createForClass(AlHajj);

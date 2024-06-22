@@ -6,78 +6,80 @@ import { Url } from "url";
 export class CreateAlHajjDto {
 
     @ApiProperty()
-    id_ProgAlHajHotel:string;
+    id_ProgAlHajHotel:string | null; 
 
     @ApiProperty()
     // @IsString()
     // @IsNotEmpty()
-    full_name: string;
+    full_name: string | null; 
 
     @ApiProperty()
     // @IsString()
     // @IsNotEmpty()
-    name_father: string;
+    name_father: string | null; 
 
     @ApiProperty()
     // @IsString()
     // @IsNotEmpty()
-    name_mother: string;
+    name_mother: string | null; 
 
     @ApiProperty()
     @IsEmail()
-    email: string;
+    email: string | null; 
 
     @ApiProperty()
-    phone_number: string;
+    phone_number: string | null; 
 
     @ApiProperty()
     // @IsNotEmpty()
-    birth: Date;
-
+    birth: Date | null; 
     @ApiProperty()
     // @IsString()
     // @IsNotEmpty()
-    gender: string;
+    gender: string | null; 
 
     @ApiProperty()
-    Health_status:string;
+    Health_status:string | null; 
 
     @ApiProperty()
-    companion1:string;
+    companion1:string | null; 
 
     @ApiProperty()
-    companion2:string;
+    companion2:string | null; 
 
     
     @ApiProperty()
-    silat_alqaraba:string;
+    silat_alqaraba:string | null; 
  
     @ApiProperty()
-    iscompanion:boolean;
+    iscompanion:boolean | null; 
     
     @ApiProperty()
     // @IsString()
     // @IsNotEmpty()
-    Nationality: string;
+    Nationality: string | null; 
 
     @ApiProperty()
     // @IsString()
     // @IsNotEmpty()
-    passport_number: string;
+    passport_number: string | null; 
 
     @ApiProperty()
     // @IsNotEmpty()
-    passport_photo :URL;
+    passport_photo :URL | null;  
 
     @ApiProperty()
-    alhaj_photo:URL;
+    alhaj_photo:URL| null; 
 
     @ApiProperty()
-    payment_method:string;
+    payment_method:string | null; 
 
     @ApiProperty()
-    Verification:boolean;
+    Verification:boolean | null; 
 
     @ApiProperty()
-    visa_photo:URL;
+    type_room:string | null; 
+  
+    @ApiProperty()
+    name_program :string;
 }

@@ -25,7 +25,7 @@ export class AlHajjController {
   findOne(@Param('id') id: string) {
     return this.alHajjService.findOne(id);
   }
-  @Get(':id')
+  @Get(':id/AlHajjWithCompanions')
   async getAlHajjWithCompanions(@Param('id') id: string) {
     return this.alHajjService.getAlHajjWithCompanions(id);
   }
