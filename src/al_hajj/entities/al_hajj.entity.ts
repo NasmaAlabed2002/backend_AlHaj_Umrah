@@ -30,10 +30,10 @@ export class AlHajj {
   Health_status:string | null;
   @Prop(
     {type: SchemaTypes.ObjectId, ref: 'AlHajj' }) 
-  companion1: string | Types.ObjectId ;
+  companion1: AlHajj | Types.ObjectId;
   @Prop(
     { type: SchemaTypes.ObjectId, ref: 'AlHajj' }) 
-  companion2: string | Types.ObjectId ;
+  companion2: AlHajj | Types.ObjectId ;
   @Prop()
   silat_alqaraba:string | null ;
   @Prop()
@@ -54,6 +54,7 @@ export class AlHajj {
   type_room:string | null; 
   @Prop() 
   name_program :string;
+  
 }
 
 export const AlHajjchema = SchemaFactory.createForClass(AlHajj);

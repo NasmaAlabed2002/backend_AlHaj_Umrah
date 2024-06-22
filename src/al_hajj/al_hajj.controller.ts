@@ -27,7 +27,7 @@ export class AlHajjController {
   }
   @Get(':id/AlHajjWithCompanions')
   async getAlHajjWithCompanions(@Param('id') id: string) {
-    return this.alHajjService.getAlHajjWithCompanions(id);
+    return this.alHajjService.getCompanionData(id);
   }
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAlHajjDto: UpdateAlHajjDto) {
@@ -39,8 +39,8 @@ export class AlHajjController {
     return this.alHajjService.remove(id);
     
   }
-  // @Delete()
-  // deleteAllRecords() {
-  //   return this.alHajjService.deleteAllRecords();
-  // }
+  @Delete()
+  deleteAllRecords() {
+    return this.alHajjService.deleteAllRecords();
+  }
 }

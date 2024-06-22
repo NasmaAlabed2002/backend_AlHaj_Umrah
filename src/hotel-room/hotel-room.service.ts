@@ -4,17 +4,18 @@ import { UpdateHotelRoomDto } from './dto/update-hotel-room.dto';
 import { HotelRoom } from './entities/hotel-room.entity';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-
+import { Hotel, HotelDocument } from 'src/hotel/entities/hotel.entity';
 @Injectable()
 export class HotelRoomService {
-  constructor(@InjectModel(HotelRoom.name) private HotelRoomModel: Model<HotelRoom>) {}
+  constructor(@InjectModel(HotelRoom.name) private HotelRoomModel: Model<HotelRoom>,
+  @InjectModel(Hotel.name) private readonly HotelModel: Model<HotelDocument>,) {}
  async create(createHotelRoomDto: CreateHotelRoomDto) {
     const createdHotelRoom = new this.HotelRoomModel(createHotelRoomDto);
     return createdHotelRoom.save();
   }
 
    async findAll() {
-    return await this.HotelRoomModel.find();
+    return await this.HotelRoomModel.find().populate('id_hotel','name').exec();
   }
 
   async findOne(id: string) {
