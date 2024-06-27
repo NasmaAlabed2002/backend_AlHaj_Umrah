@@ -10,6 +10,13 @@ export class ProgramUmrah {
   @Prop(
     { type: SchemaTypes.ObjectId, ref: 'Office' }
   ) id_Office: Office;
+  @Prop(
+    { type: SchemaTypes.ObjectId, ref: 'busCompany' }
+  ) id_busCompany: busCompany;
+  @Prop( { type: [{ 
+    name: { type: String, required: true },
+    price_tecket: { type: Double }}] }) 
+    airline: {name : string ; price_tecket :Double }[];
   @Prop()
   name_program: string;
   @Prop({ default:()=> Date.now() ,required:true })
@@ -32,11 +39,7 @@ export class ProgramUmrah {
   price3: string;
   @Prop()
   price4: string;
-  @Prop(
-    { type: SchemaTypes.ObjectId, ref: 'busCompany' }
-  ) id_busCompany: busCompany;
-  @Prop({ type : 'Object' }) 
-  Airline : {name:string, price_tecket:Double }
+
 }
 
 
