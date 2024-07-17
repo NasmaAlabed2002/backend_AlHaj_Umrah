@@ -53,11 +53,11 @@ export class CreateAlMutamirDto {
     passport_number: string;
 
     @ApiProperty()
-    @IsUrl()
+    // @IsUrl()
     passport_photo : Url;
 
     @ApiProperty()
-    @IsUrl()
+    // @IsUrl()
     almutamir_photo: Url;
     
     @ApiProperty()
