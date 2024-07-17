@@ -57,8 +57,8 @@ export class ProgramUmrahController {
     return this.programUmrahService.update(id, updateProgramUmrahDto);
   }
 
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.programUmrahService.remove(id);
-  // }
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.programUmrahService.remove(id);
+  }
 }
