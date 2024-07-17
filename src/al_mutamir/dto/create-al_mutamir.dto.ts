@@ -27,7 +27,7 @@ export class CreateAlMutamirDto {
 
     @ApiProperty()
     @IsNumber()
-    phone_number:Number;
+    phone_number:string;
 
     @ApiProperty()
     @IsEmail()
