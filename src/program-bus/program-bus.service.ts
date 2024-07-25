@@ -128,28 +128,53 @@ await this.ProgramBusModel.updateMany(
 }
 
 async addBusWithSeats(id_ProgramUmrah: string, number_bus: number): Promise<void> {
-  const programBus = await this.ProgramBusModel.findOne({ id_ProgramUmrah }).exec();
-  const bus = await this.ProgramBusModel.findOne({ number_bus: number_bus }).exec();
+  let programBus = await this.ProgramBusModel.findOne({ id_ProgramUmrah }).exec();
 
-    if (programBus.count_bus ==number_bus) {
-      throw new Error(`Bus with number ${number_bus} already exists`);
-    }
   if (!programBus) {
-    throw new Error(`Program Bus with id_ProgramUmrah ${id_ProgramUmrah} not found`);
-  }
-
-  const seatArray = [];
-  programBus.count_bus =number_bus;
-  for (let i = 1; i <= 30; i++) {
-    seatArray.push({
-      number_bus: number_bus,
-      seatNumber: i,
-      name_passenger: null,
-      isReserved: false,
+    programBus = new this.ProgramBusModel({
+      id_ProgramUmrah,
+      count_bus: 1,
+      seat: [],
     });
+    const seatArray = [];
+    for (let i = 1; i <= 30; i++) {
+      seatArray.push({
+        number_bus: number_bus,
+        seatNumber: i,
+        name_passenger: null,
+        isReserved: false,
+      });
+    }
+    programBus.seat.push(...seatArray);
+    try {
+      await programBus.save();
+    } catch (error) {
+      throw new Error(`Failed to create Program Bus: ${error.message}`);
+    }
+  } else {
+    if (programBus.count_bus == number_bus) {
+      throw new Error(`Bus with number ${number_bus} already exists`);
+    } else {
+      programBus.count_bus = number_bus;
+
+      const seatArray = [];
+      for (let i = 1; i <= 30; i++) {
+        seatArray.push({
+          number_bus: number_bus,
+          seatNumber: i,
+          name_passenger: null,
+          isReserved: false,
+        });
+      }
+      programBus.seat.push(...seatArray);
+
+      try {
+        await programBus.save();
+      } catch (error) {
+        throw new Error(`Failed to save Program Bus: ${error.message}`);
+      }
+    }
   }
-  programBus.seat.push(...seatArray);
-  await programBus.save();
 }
 async deleteSeatsByNumber(id_ProgramUmrah: string, number: number) {
   const program = await this.ProgramBusModel.findOne({ id_ProgramUmrah });
