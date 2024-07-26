@@ -3,10 +3,16 @@ import { ApiProperty } from "@nestjs/swagger";
 export class CreateOfficeDto {
     @ApiProperty()
     name : string;
-
+    @ApiProperty()
+    nameEnglish :string;
+    @ApiProperty()
+    logo:string;
+    @ApiProperty()
+    aboutOffice: string;
     @ApiProperty()
     address : string;
-
+    @ApiProperty()
+    password : string;
     @ApiProperty()
     mobile : number ;
 

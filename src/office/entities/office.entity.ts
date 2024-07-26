@@ -8,10 +8,16 @@ export class Office {
 
     @Prop()
     name : string;
-
+    @Prop()
+    nameEnglish :string;
+    @Prop()
+    logo:string;
+    @Prop()
+    aboutOffice: string;
     @Prop()
     address : string;
-
+    @Prop()
+    password : string;
     @Prop()
     mobile : number ;
 

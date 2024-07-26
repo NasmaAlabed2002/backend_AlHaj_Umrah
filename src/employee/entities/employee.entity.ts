@@ -21,6 +21,8 @@ export class Employee {
     @Prop()
     specialty:string;
     @Prop()
+    password : string;
+    @Prop()
     mobile:number;
     @Prop()
     email:string;

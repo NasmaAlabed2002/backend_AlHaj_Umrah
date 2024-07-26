@@ -17,7 +17,8 @@ export class CreateEmployeeDto {
     @ApiProperty()
     @IsString()
     specialty:string;
-   
+    @ApiProperty()
+    password : string;
     @ApiProperty()
     mobile:number;
 
