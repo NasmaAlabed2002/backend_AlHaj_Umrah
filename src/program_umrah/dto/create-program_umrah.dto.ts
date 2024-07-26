@@ -47,4 +47,6 @@ export class CreateProgramUmrahDto {
     price4: string;
     @ApiProperty()
     Available_viewing : boolean;
+    @ApiProperty()
+    Is_airline:boolean;
 }

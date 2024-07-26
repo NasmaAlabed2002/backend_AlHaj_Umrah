@@ -39,7 +39,8 @@ export class ProgramUmrah {
   Airline : {name:string, price_tecket:Double }
   @Prop()
   Available_viewing : boolean;
-
+  @Prop()
+  Is_airline:boolean;
 }
 
 
