@@ -17,6 +17,10 @@ export class ProgramAlHajController {
     return this.programAlHajService.findAll();
   }
 
+  @Get('AvailablePrograms')
+  find() {
+    return this.programAlHajService.getAvailablePrograms();
+  }
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.programAlHajService.findOne(id);

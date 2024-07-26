@@ -21,7 +21,9 @@ export class ProgramUmrahService {
   async findAll() {
     return await this.ProgramUmrahModel.find();
   }
-
+  async getAvailablePrograms(): Promise<ProgramUmrah[]> {
+    return this.ProgramUmrahModel.find({ Available_viewing: true }).exec();
+}
   async findOne(id: string) {
     return await this.ProgramUmrahModel.findOne({_id:id})
   }

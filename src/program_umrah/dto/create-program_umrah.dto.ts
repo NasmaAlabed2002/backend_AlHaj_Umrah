@@ -45,4 +45,6 @@ export class CreateProgramUmrahDto {
     price3: string;
     @ApiProperty()
     price4: string;
+    @ApiProperty()
+    Available_viewing : boolean;
 }

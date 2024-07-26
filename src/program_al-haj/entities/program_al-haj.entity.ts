@@ -38,6 +38,8 @@ export class ProgramAlHaj {
       price3: string;
       @Prop()
       price4: string;
+      @Prop()
+      Available_viewing : boolean;
       
     
 }

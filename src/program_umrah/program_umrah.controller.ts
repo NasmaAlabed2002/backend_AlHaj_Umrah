@@ -47,6 +47,11 @@ export class ProgramUmrahController {
     return this.programUmrahService.findAll();
   }
 
+  @Get('AvailablePrograms')
+  find() {
+    return this.programUmrahService.getAvailablePrograms();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.programUmrahService.findOne(id);

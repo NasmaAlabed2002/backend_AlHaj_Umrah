@@ -37,6 +37,9 @@ export class ProgramUmrah {
   ) id_busCompany: busCompany;
   @Prop({ type : 'Object' }) 
   Airline : {name:string, price_tecket:Double }
+  @Prop()
+  Available_viewing : boolean;
+
 }
 
 

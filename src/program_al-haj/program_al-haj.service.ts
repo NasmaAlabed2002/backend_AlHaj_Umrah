@@ -16,7 +16,9 @@ export class ProgramAlHajService {
   async findAll() {
     return await this.ProgramAlHajModel.find();
   }
-
+  async getAvailablePrograms(): Promise<ProgramAlHaj[]> {
+    return this.ProgramAlHajModel.find({ Available_viewing: true }).exec();
+}
   async findOne(id: string) {
     return await this.ProgramAlHajModel.find({ _id: id });
   }
