@@ -6,7 +6,7 @@ export class CreateOfficeDto {
     @ApiProperty()
     nameEnglish :string;
     @ApiProperty()
-    logo:string;
+    logoImage:URL;
     @ApiProperty()
     aboutOffice: string;
     @ApiProperty()

@@ -11,7 +11,7 @@ export class Office {
     @Prop()
     nameEnglish :string;
     @Prop()
-    logo:string;
+    logoImage:URL;
     @Prop()
     aboutOffice: string;
     @Prop()
