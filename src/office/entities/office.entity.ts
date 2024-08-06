@@ -19,10 +19,10 @@ export class Office {
     @Prop()
     password : string;
     @Prop()
-    mobile : number ;
+    mobile : string ;
 
     @Prop()
-    phone : number ;
+    phone : string ;
 
     @Prop()
     email :  string ;

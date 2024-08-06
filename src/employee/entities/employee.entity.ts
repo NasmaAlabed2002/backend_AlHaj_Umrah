@@ -23,7 +23,7 @@ export class Employee {
     @Prop()
     password : string;
     @Prop()
-    mobile:number;
+    mobile:string;
     @Prop()
     email:string;
     @Prop()

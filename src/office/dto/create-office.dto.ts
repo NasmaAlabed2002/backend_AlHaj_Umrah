@@ -14,10 +14,10 @@ export class CreateOfficeDto {
     @ApiProperty()
     password : string;
     @ApiProperty()
-    mobile : number ;
+    mobile : string ;
 
     @ApiProperty()
-    phone : number ;
+    phone : string ;
 
     @ApiProperty()
     email :  string ;

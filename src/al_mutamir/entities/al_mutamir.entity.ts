@@ -30,7 +30,7 @@ export class AlMutamir {
     @Prop()
     name_mother: string;
     @Prop()
-    phone_number:Number;
+    phone_number:string;
     @Prop()
     email: string
     @Prop({ default:()=> Date.now() ,required:true })

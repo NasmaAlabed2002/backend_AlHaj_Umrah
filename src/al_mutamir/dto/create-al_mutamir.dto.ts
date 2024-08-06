@@ -26,7 +26,7 @@ export class CreateAlMutamirDto {
     name_mother: string;
 
     @ApiProperty()
-    @IsNumber()
+    // @IsNumber()
     phone_number:string;
 
     @ApiProperty()
